@@ -105,12 +105,13 @@ class Platinum::Page < Platinum::Slotted
   private def render_footer
     footer class: ["fixed", "left-0", "right-0", "bottom-0", "z-1", "py-3", "px-1", theme.overlay], gap: 4 do
       H 4 do
-        Row items: "center" do
+        Row items: "center", gap: 4 do
           Row justify: "start", items: "center" do
             render_profile "hidden md-flex"
           end
-          Row justify: "end", items: "center" do
+          Row gap: 2, justify: "end", items: "center" do
             render_filters
+            render_search
             render_toolbars
           end
         end
@@ -177,22 +178,28 @@ class Platinum::Page < Platinum::Slotted
   end
 
   private def render_filters
-    if @search.present? || @filters.any?
+    if @filters.any?
       Expander icon: theme.filters_icon do
-        "FILTERS"
+        Column(gap: 4, items: "stretch") { render_popup_items(@filters) }
       end
     end
+  end
+
+  private def render_search
+    Row(&@search) if @search.present?
   end
 
   private def render_toolbars
     if @toolbars.any?
       Expander icon: theme.toolbars_icon do
-        @toolbars.each do |toolbar|
-          Row(justify: "end", class: "overflow-x-auto", &toolbar)
-        end
+        Column(gap: 4, items: "stretch") { render_popup_items(@toolbars) }
       end
     end
   end
+
+  private def render_popup_items(items) = items.each { |item| render_popup_item(&item) }
+
+  private def render_popup_item(&) = Scroll { Row(justify: "start", &) }
 
   private def render_profile_link = @profile_link&.call
 
