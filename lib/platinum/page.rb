@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Platinum::Page < Platinum::Base
+class Platinum::Page < Platinum::Slotted
   include Phlex::Rails::Helpers::CSRFMetaTags
   include Phlex::Rails::Helpers::CSPMetaTag
   include Phlex::Rails::Helpers::StylesheetLinkTag
