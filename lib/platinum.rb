@@ -14,6 +14,7 @@ module Platinum
   require_relative "platinum/h"
   require_relative "platinum/expander"
   require_relative "platinum/pagination"
+  require_relative "platinum/card"
   require_relative "platinum/page"
 
   class Error < StandardError; end
