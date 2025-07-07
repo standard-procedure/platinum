@@ -72,18 +72,13 @@ class Platinum::Page < Platinum::Slotted
   end
 
   private def render_header
-    header class: ["fixed", "left-0", "right-0", "top-0", "z-2", "py-3", "px-1", theme.overlay], gap: 4 do
+    header class: ["fixed left-0 right-0 top-0 z-2 py-1 px-1", theme.overlay], gap: 4 do
       H 3 do
-        Row do
-          Row justify: "start" do
-            a(href: "/", class: theme.link, data: {turbo_frame: "_top"}) { Icon theme.home_icon }
-          end
-          div class: "block md:hidden flex-grow" do
-            render_small_header
-          end
-          div class: "hidden md:block flex-grow" do
-            render_large_header
-          end
+        Column class: "block md:hidden flex-grow" do
+          render_small_header
+        end
+        Column class: "hidden md:block flex-grow" do
+          render_large_header
         end
       end
     end
@@ -91,8 +86,8 @@ class Platinum::Page < Platinum::Slotted
 
   private def render_main(&contents)
     main class: ["py-4"] do
-      Row items: "stretch" do
-        Column justify: "start", class: "hidden md:flex py-16 px-4 min-w-xs w-sm" do
+      Row items: "stretch", class: "py-16" do
+        Column justify: "start", class: "hidden md:flex px-4 min-w-xs w-sm" do
           render_large_sidebar
         end
         Column(class: "flex-grow") do
@@ -103,17 +98,11 @@ class Platinum::Page < Platinum::Slotted
   end
 
   private def render_footer
-    footer class: ["fixed", "left-0", "right-0", "bottom-0", "z-1", "py-3", "px-1", theme.overlay], gap: 4 do
+    footer class: ["fixed", "left-0", "right-0", "bottom-0", "z-1", "py-1", "px-1", theme.overlay], gap: 4 do
       H 4 do
         Row items: "center", gap: 4 do
-          Row justify: "start", items: "center" do
-            render_profile "hidden md-flex"
-          end
-          Row gap: 2, justify: "end", items: "center" do
-            render_filters
-            render_search
-            render_toolbars
-          end
+          render_small_footer
+          render_large_footer
         end
       end
     end
@@ -123,7 +112,10 @@ class Platinum::Page < Platinum::Slotted
 
   private def render_small_header
     Row do
-      span(&@title)
+      Row justify: "start" do
+        render_home_breadcrumb
+        span(&@title)
+      end
       render_small_sidebar
     end
   end
@@ -147,18 +139,68 @@ class Platinum::Page < Platinum::Slotted
     end
   end
 
+  private def render_small_footer
+    render_small_filters
+    render_small_toolbars
+  end
+
+  private def render_small_filters
+    if @filters.any?
+      Expander icon: theme.filters_icon, class: "inline md:hidden" do
+        Column(gap: 4, items: "stretch") { render_popup_items(@filters) }
+      end
+    end
+  end
+
+  private def render_small_toolbars
+    if @toolbars.any?
+      Expander icon: theme.toolbars_icon, class: "inline md:hidden" do
+        Column(gap: 4, items: "stretch") { render_popup_items(@toolbars) }
+      end
+    end
+  end
+
   # Large screens
 
   private def render_large_header
     Row do
-      render_breadcrumbs
+      Row justify: "start" do
+        render_home_breadcrumb
+        render_breadcrumbs
+      end
       span(&@title)
+    end
+    Row do
+      render_large_filters
+      render_search
     end
   end
 
-  private def render_large_sidebar = render_navigation
+  private def render_large_sidebar
+    Column justify: "between", class: ["h-full mb-2 p-2 z-1", theme.overlay] do
+      Column justify: "start" do
+        render_navigation
+      end
+      Column justify: "end" do
+        render_profile
+      end
+    end
+  end
+
+  private def render_large_footer = render_large_toolbars
+
+  private def render_large_filters
+    Row(class: "hidden md:flex") { render_popup_items(@filters) } if @filters.any?
+  end
+
+  private def render_large_toolbars
+    Row(class: "hidden md:flex") { render_popup_items(@toolbars) } if @toolbars.any?
+  end
 
   # Common to small and large screens
+
+  private def render_home_breadcrumb = Breadcrumb { a(href: "/", class: theme.link, data: {turbo_frame: "_top"}) { Icon theme.home_icon } }
+
   private def render_navigation = @navigation&.call
 
   private def render_profile css_class = nil
@@ -170,31 +212,14 @@ class Platinum::Page < Platinum::Slotted
 
   private def render_breadcrumbs
     Row(justify: "start", gap: 1, wrap: true) do
-      span { @breadcrumbs.size }
       @breadcrumbs.each do |breadcrumb|
         Breadcrumb(&breadcrumb)
       end
     end
   end
 
-  private def render_filters
-    if @filters.any?
-      Expander icon: theme.filters_icon do
-        Column(gap: 4, items: "stretch") { render_popup_items(@filters) }
-      end
-    end
-  end
-
   private def render_search
     Row(&@search) if @search.present?
-  end
-
-  private def render_toolbars
-    if @toolbars.any?
-      Expander icon: theme.toolbars_icon do
-        Column(gap: 4, items: "stretch") { render_popup_items(@toolbars) }
-      end
-    end
   end
 
   private def render_popup_items(items) = items.each { |item| render_popup_item(&item) }
