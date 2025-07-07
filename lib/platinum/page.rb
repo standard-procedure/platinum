@@ -20,6 +20,7 @@ class Platinum::Page < Platinum::Slotted
     @sign_out_link = nil
     @filters = []
     @search = nil
+    @pagination = nil
     @toolbars = Set.new
     self.class.current = self
   end
@@ -41,6 +42,8 @@ class Platinum::Page < Platinum::Slotted
   def search(&contents) = @search = contents
 
   def toolbar(&contents) = @toolbars << contents
+
+  def pagination(&contents) = @pagination = contents
 
   def view_template(&)
     doctype
@@ -100,9 +103,10 @@ class Platinum::Page < Platinum::Slotted
   private def render_footer
     footer class: ["fixed", "left-0", "right-0", "bottom-0", "z-1", "py-1", "px-1", theme.overlay], gap: 4 do
       H 4 do
-        Row items: "center", gap: 4 do
+        Row justify: "start", items: "center", gap: 4 do
           render_small_footer
           render_large_footer
+          render_pagination
         end
       end
     end
@@ -187,7 +191,11 @@ class Platinum::Page < Platinum::Slotted
     end
   end
 
-  private def render_large_footer = render_large_toolbars
+  private def render_large_footer
+    Row items: "center" do
+      render_large_toolbars
+    end
+  end
 
   private def render_large_filters
     Row(class: "hidden md:flex") { render_popup_items(@filters) } if @filters.any?
@@ -221,6 +229,8 @@ class Platinum::Page < Platinum::Slotted
   private def render_search
     Row(&@search) if @search.present?
   end
+
+  private def render_pagination = @pagination&.call
 
   private def render_popup_items(items) = items.each { |item| render_popup_item(&item) }
 

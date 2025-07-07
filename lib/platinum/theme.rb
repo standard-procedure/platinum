@@ -23,7 +23,7 @@ class Platinum::Theme
     body: "font-light text-stone-800 bg-stone-50 dark:text-stone-200 dark:bg-stone-900",
     muted: "text-stone-600 dark:text-stone-400",
     panel: "py-1 px-2 border rounded-md bg-stone-200/80 border-white hover:bg-stone-200 dark:bg-stone-800/80 dark:border-black dark:hover:bg-stone-800",
-    input: "px-4 py-2 mt-2 mx-1 block w-full rounded-md border border-stone-100 bg-stone-50 text-stone-800 focus-visible:border-green-200 focus:bg-white dark:border-stone-800 dark:bg-stone-900 dark:text-stone-200 dark:focus-visible:border-green-800 dark:focus:bg-black",
+    input: "px-4 py-2 mt-2 mx-1 block w-full rounded-md border border-stone-100 bg-stone-50 text-stone-800 focus-visible:border-green-200 focus:bg-white dark:border-stone-800 dark:bg-stone-600 dark:text-stone-200 dark:focus-visible:border-green-800 dark:focus:bg-black",
     button: "px-2 py-1 font-medium backdrop-blur-lg border rounded-md text-stone-600 bg-stone-100/10 border-stone-800 hover:text-stone-800 hover:bg-stone-200/80 hover:border-stone-900 dark:text-stone-400 dark:bg-stone-900/10 dark:border-stone-500 dark:hover:text-stone-200 dark:hover:bg-stone-800/80 dark:hover:border-stone-500",
     border: "border rounded-md border-stone-800 hover:border-stone-900 dark:border-stone-500 dark:hover:border-stone-500",
     primary: "font-medium text-green-800 dark:text-green-200",
@@ -39,8 +39,10 @@ class Platinum::Theme
     warning_button: "font-medium border rounded-md text-amber-600 bg-amber-100 border-amber-600 hover:text-amber-800 hover:bg-amber-300 hover:border-amber-900 dark:text-amber-400 dark:bg-amber-900 dark:border-amber-400 dark:hover:text-amber-200 dark:hover:bg-amber-700 dark:hover:border-amber-100",
     warning_border: "border rounded-md border-amber-600 hover:border-amber-900 dark:border-amber-400 dark:hover:border-amber-100",
     danger: "font-medium text-red-800 dark:text-red-200",
-    danger_button: "font-medium border rounded-md text-red-600 bg-red-100 border-red-600 hover:text-red-800 hover:bg-red-300 hover:border-red-900 dark:bg-red-500 dark:text-red-400 dark:border-red-900 dark:hover:bg-red-400 dark:hover:text-red-200 dark:hover:border-red-100",
+    danger_button: "font-medium border rounded-md text-red-600 bg-red-100 border-red-600 hover:text-red-800 hover:bg-red-300 hover:border-red-900 dark:bg-red-600 dark:text-red-400 dark:border-red-900 dark:hover:bg-red-400 dark:hover:text-red-200 dark:hover:border-red-100",
     danger_border: "border rounded-md border-red-800 hover:border-red-900 dark:border-red-200 dark:hover:border-red-100",
+    nav_button: "text-sm font-light border rounded-full px-4 py-1 border-stone-400 text-stone-700 bg-stone-100 hover:border-green-600 hover:text-green-900 hover:bg-green-300 dark:border-stone-300 dark:text-stone-300 dark:bg-stone-700 dark:hover:border-green-400 dark:hover:text-green-100 dark:hover:bg-green-700",
+    selected_nav_button: "text-sm font-light border rounded-full px-4 py-1 border-green-400 text-green-700 bg-green-100 hover:border-green-600 hover:text-green-900 hover:bg-green-300 dark:border-green-300 dark:text-green-300 dark:bg-green-700 dark:hover:border-green-400 dark:hover:text-green-100 dark:hover:bg-green-700",
     info_body: "font-light rounded-md px-2 py-1 text-stone-800 bg-yellow-200 dark:text-stone-400 dark:bg-yellow-800",
     info_button: "font-medium border rounded-md text-stone-800 bg-yellow-200 border-yellow-500 hover:text-yellow-100 hover:bg-yellow-800 hover:border-yellow-800 dark:text-stone-200 dark:bg-yellow-800 dark:border-yellow-500 dark:hover:text-yellow-900 dark:hover:bg-yellow-500 dark:hover:border-yellow-200",
     info_border: "border rounded-md border-yellow-600 hover:border-yellow-900 dark:border-yellow-400 dark:hover:border-yellow-100",
@@ -48,7 +50,9 @@ class Platinum::Theme
     overlay: "border rounded-md backdrop-blur-lg bg-stone-200/10 border-stone-200 hover:bg-stone-50/30 dark:bg-stone-900/10 dark:border-stone-900 dark:hover:bg-stone-900/30",
     h: {1 => "text-2xl font-bold", 2 => "text-xl font-medium border-b border-stone-600 dark:border-stone-300", 3 => "text-xk font-bold", 4 => "text-lg font-bold", 5 => "text-base font-bold", 6 => "text-sm font-bold"},
     expander: "border rounded-md p-1 backdrop-blur-lg bg-stone-200/10 border-white hover:bg-stone-50/80 dark:bg-stone-800/10 dark:border-black dark:hover:bg-stone-900/80 open:bg-stone-100/80 open:border-stone-200 open:hover:bg-stone-50 open:dark:bg-stone-800 open:dark:border-stone-600 open:dark:hover:bg-stone-900",
-    expander_summary: "z-1 shrink-0 transition duration-500 rounded-xl px-4 py-1 group-open:rotate-90 group-open:border group-open:border-stone-300 group-open:bg-white group-open:text-stone-600 hover:group-open:border-stone-600 hover:group-open:bg-stone-100 hover:group-open:text-stone-800"
+    expander_summary: "z-1 shrink-0 transition duration-500 rounded-xl px-4 py-1 group-open:rotate-90 group-open:border group-open:border-stone-300 group-open:bg-white group-open:text-stone-600 hover:group-open:border-stone-600 hover:group-open:bg-stone-100 hover:group-open:text-stone-800",
+    pagination_inner: %w[text-base backdrop-blur-xs px-2 mx-2 rounded-lg border text-stone-100 bg-stone-400/30 border-stone-50 dark:text-stone-900 dark:bg-stone-600/30 dark:border-stone-900],
+    pagination_text: %w[text-sm rounded-lg px-4 py-1 backdrop-blur-xs border text-stone-700 border-stone-50 bg-stone-50/30 hover:bg-stone-100 dark:text-stone-300 dark:border-stone-900 dark:bg-stone-900/30 hover:dark:bg-stone-800]
   }.freeze
 
   DEFAULT_CONFIG.keys.each do |key|

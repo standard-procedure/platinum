@@ -13,6 +13,7 @@ module Platinum
   require_relative "platinum/breadcrumb"
   require_relative "platinum/h"
   require_relative "platinum/expander"
+  require_relative "platinum/pagination"
   require_relative "platinum/page"
 
   class Error < StandardError; end
