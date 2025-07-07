@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Platinum::Page < Platinum::Slotted
+class Platinum::Page < Platinum::Base
   include Phlex::Rails::Helpers::CSRFMetaTags
   include Phlex::Rails::Helpers::CSPMetaTag
   include Phlex::Rails::Helpers::StylesheetLinkTag
@@ -20,7 +20,7 @@ class Platinum::Page < Platinum::Slotted
     @sign_out_link = nil
     @filters = []
     @search = nil
-    @toolbar = nil
+    @toolbars = Set.new
     self.class.current = self
   end
 
@@ -40,9 +40,9 @@ class Platinum::Page < Platinum::Slotted
 
   def search(&contents) = @search = contents
 
-  def toolbar(&contents) = @toolbar = contents
+  def toolbar(&contents) = @toolbars << contents
 
-  def view_template(&contents)
+  def view_template(&)
     doctype
     html do
       head do
@@ -50,12 +50,7 @@ class Platinum::Page < Platinum::Slotted
       end
       body class: theme.body do
         render_header
-        main class: ["py-4"] do
-          Row items: "stretch" do
-            render_sidebar
-            Column(class: "flex-grow") { contents&.call }
-          end
-        end
+        render_main(&)
         render_footer
       end
     end
@@ -78,26 +73,30 @@ class Platinum::Page < Platinum::Slotted
 
   private def render_header
     header class: ["fixed", "left-0", "right-0", "top-0", "z-2", "py-3", "px-1", theme.overlay], gap: 4 do
-      Platinum::H(3) do
+      H 3 do
         Row do
-          # Home
           Row justify: "start" do
             a(href: "/", class: theme.link, data: {turbo_frame: "_top"}) { Icon theme.home_icon }
           end
-          # Small screen: Title & Nav Button
           div class: "block md:hidden flex-grow" do
-            Row do
-              span(&@title)
-              render_navigation_button
-            end
+            render_small_header
           end
-          # Large screen: Breadcrumbs & Title
           div class: "hidden md:block flex-grow" do
-            Row do
-              render_breadcrumbs
-              span(&@title)
-            end
+            render_large_header
           end
+        end
+      end
+    end
+  end
+
+  private def render_main(&contents)
+    main class: ["py-4"] do
+      Row items: "stretch" do
+        Column justify: "start", class: "hidden md:flex py-16 px-4 min-w-xs w-sm" do
+          render_large_sidebar
+        end
+        Column(class: "flex-grow") do
+          contents&.call
         end
       end
     end
@@ -105,74 +104,94 @@ class Platinum::Page < Platinum::Slotted
 
   private def render_footer
     footer class: ["fixed", "left-0", "right-0", "bottom-0", "z-1", "py-3", "px-1", theme.overlay], gap: 4 do
-      Platinum::H(4) do
-        div class: "block md:hidden" do
-          Row justify: "end" do
-            render_filter_popup
-            render_toolbar
+      H 4 do
+        Row items: "center" do
+          Row justify: "start", items: "center" do
+            render_profile "hidden md-flex"
           end
-        end
-        div class: "hidden md:block" do
-          Row items: "center" do
-            render_profile
-            Row justify: "end", items: "center" do
-              render_filters
-              render_toolbar
-            end
+          Row justify: "end", items: "center" do
+            render_filters
+            render_toolbars
           end
         end
       end
     end
   end
 
-  private def render_sidebar
-    Column justify: "start", class: "hidden md:flex py-16 px-4 min-w-xs w-sm" do
-      render_navigation
+  # Small screens
+
+  private def render_small_header
+    Row do
+      span(&@title)
+      render_small_sidebar
     end
   end
 
-  private def render_navigation = @navigation&.call
-
-  private def render_navigation_button
+  private def render_small_sidebar
     div data: {controller: "drawer"} do
       a href: "#", class: theme.link, data: {action: "drawer#open"} do
         Icon theme.navigation_icon
       end
       sl_drawer label: @page_title, data: {drawer_target: "drawer"} do
         Column justify: "between", class: ["h-full mb-2 p-2 z-1", theme.overlay] do
-          render_navigation
-          render_profile
+          Column justify: "start" do
+            render_breadcrumbs
+            render_navigation
+          end
+          Column justify: "end" do
+            render_profile
+          end
         end
       end
     end
   end
 
-  private def render_profile
-    Row items: "center", class: theme.panel do
+  # Large screens
+
+  private def render_large_header
+    Row do
+      render_breadcrumbs
+      span(&@title)
+    end
+  end
+
+  private def render_large_sidebar = render_navigation
+
+  # Common to small and large screens
+  private def render_navigation = @navigation&.call
+
+  private def render_profile css_class = nil
+    Row items: "center", class: [theme.panel, css_class] do
       render_profile_link
       render_sign_out_link
     end
   end
 
   private def render_breadcrumbs
-    Row(justify: "start", gap: 2, wrap: true) do
+    Row(justify: "start", gap: 1, wrap: true) do
+      span { @breadcrumbs.size }
       @breadcrumbs.each do |breadcrumb|
         Breadcrumb(&breadcrumb)
       end
     end
   end
 
-  private def render_filter_popup
-    a href: "#", class: theme.link do
-      Icon theme.filters_icon
+  private def render_filters
+    if @search.present? || @filters.any?
+      Expander icon: theme.filters_icon do
+        "FILTERS"
+      end
     end
   end
 
-  private def render_filters
-  end
-
-  private def render_toolbar
-    Row(justify: "end", class: "overflow-x-auto", &@toolbar)
+  private def render_toolbars
+    if @toolbars.any?
+      Expander icon: theme.toolbars_icon do
+        @toolbars.each do |toolbar|
+          Row(justify: "end", class: "overflow-x-auto", &toolbar)
+        end
+      end
+    end
   end
 
   private def render_profile_link = @profile_link&.call
@@ -189,17 +208,5 @@ class Platinum::Page < Platinum::Slotted
 
   class << self
     attr_accessor :current
-  end
-
-  class Toolbar
-    def initialize(&configuration)
-      @items = []
-      instance_eval(&configuration)
-    end
-    attr_reader :items
-
-    def add(&item)
-      @items << item
-    end
   end
 end

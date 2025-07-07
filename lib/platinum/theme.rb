@@ -17,11 +17,13 @@ class Platinum::Theme
     home_icon: "house",
     navigation_icon: "three-dots-vertical",
     filters_icon: "filter",
-    toolbars_icon: "gear",
+    toolbars_icon: "caret-right-square",
+    expander_icon: "plus-circle",
+    breadcrumb_icon: "chevron-compact-right",
     body: "font-light text-slate-800 bg-slate-50 dark:text-slate-200 dark:bg-slate-900",
     muted: "text-slate-600 dark:text-slate-400",
     panel: "py-1 px-2 border rounded-md bg-slate-200/80 border-white hover:bg-slate-200 dark:bg-slate-800/80 dark:border-black dark:hover:bg-slate-800",
-    button: "font-medium backdrop-blur-lg border rounded-md text-slate-600 bg-slate-100/10 border-slate-800 hover:text-slate-800 hover:bg-slate-200/80 hover:border-slate-900 dark:text-slate-400 dark:bg-slate-900/10 dark:border-slate-500 dark:hover:text-slate-200 dark:hover:bg-slate-800/80 dark:hover:border-slate-500",
+    button: "px-2 py-1 font-medium backdrop-blur-lg border rounded-md text-slate-600 bg-slate-100/10 border-slate-800 hover:text-slate-800 hover:bg-slate-200/80 hover:border-slate-900 dark:text-slate-400 dark:bg-slate-900/10 dark:border-slate-500 dark:hover:text-slate-200 dark:hover:bg-slate-800/80 dark:hover:border-slate-500",
     border: "border rounded-md border-slate-800 hover:border-slate-900 dark:border-slate-500 dark:hover:border-slate-500",
     primary: "font-medium text-sky-800 dark:text-sky-200",
     primay_button: "font-medium border rounded-md text-sky-100 bg-sky-800 border-sky-900 hover:text-sky-800 hover:bg-sky-300 hover:border-sky-900 hover:border-sky-900 dark:bg-sky-500 dark:text-sky-600 dark:border-sky-200 dark:hover:bg-sky-400 dark:hover:text-sky-900 dark:hover:border-sky-800",
@@ -43,7 +45,8 @@ class Platinum::Theme
     info_border: "border rounded-md border-yellow-600 hover:border-yellow-900 dark:border-yellow-400 dark:hover:border-yellow-100",
     link: "rounded-md p-1 font-medium border-b text-sky-800 border-sky-200 hover:text-sky-200 hover:bg-sky-800 dark:text-sky-200 dark:border-sky-800 dark:hover:text-sky-200 dark:hover:border-sky-200",
     overlay: "border rounded-md backdrop-blur-lg bg-slate-200/10 border-white hover:bg-slate-50/80 dark:bg-slate-900/10 dark:border-black dark:hover:bg-slate-900/80",
-    h: {1 => "text-2xl font-bold", 2 => "text-xl font-medium border-b border-slate-600 dark:border-slate-300", 3 => "text-xk font-bold", 4 => "text-lg font-bold", 5 => "text-base font-bold", 6 => "text-sm font-bold"}
+    h: {1 => "text-2xl font-bold", 2 => "text-xl font-medium border-b border-slate-600 dark:border-slate-300", 3 => "text-xk font-bold", 4 => "text-lg font-bold", 5 => "text-base font-bold", 6 => "text-sm font-bold"},
+    expander: "border rounded-md p-1 backdrop-blur-lg bg-slate-200/10 border-white hover:bg-slate-50/80 dark:bg-slate-800/10 dark:border-black dark:hover:bg-slate-900/80 open:bg-slate-200 open:border-slate-500 open:hover:bg-slate-50 open:dark:bg-slate-800 open:dark:border-slate-500 open:dark:hover:bg-slate-900"
   }.freeze
 
   DEFAULT_CONFIG.keys.each do |key|
