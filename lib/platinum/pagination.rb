@@ -25,7 +25,7 @@ class Platinum::Pagination < Platinum::Slotted
 
   private def show_link_for?(page_number) = @range.include?(page_number) && (page_number != @collection.current_page)
 
-  class Link < Components::Base
+  class Link < Platinum::Base
     def initialize url, label:
       @url = url || "#"
       @label = label
