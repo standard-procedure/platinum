@@ -3,7 +3,7 @@
 require_relative "lib/platinum/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "platinum"
+  spec.name = "standard_procedure_platinum"
   spec.version = Platinum::VERSION
   spec.authors = ["Rahoul Baruah"]
   spec.email = ["rahoulb@echodek.co"]
