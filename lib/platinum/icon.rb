@@ -14,7 +14,7 @@ class Platinum::Icon < Platinum::Base
   private def icon = i(**mix(class: @class, **@options))
 
   private def icon_with_text
-    div(**mix(class: "flex justify-start gap-1 flex-nowrap", **@options)) do
+    Row(gap: 1, **@options) do
       i(class: @class)
       span { @text }
     end

@@ -12,7 +12,7 @@ class Platinum::Pagination < Platinum::Slotted
   def render? = @collection.total_pages > 1
 
   def view_template
-    Row(class: @inner_class, gap: 4, items: "center") do
+    Platinum::Row(class: @inner_class, gap: 4, items: "center") do
       render Link.new(link_for(1), label: :first)
       render Link.new(link_for(@collection.prev_page), label: :previous)
       span(class: @inner_text_class) { "#{@collection.current_page}/#{@collection.total_pages}" }
@@ -35,6 +35,6 @@ class Platinum::Pagination < Platinum::Slotted
       a(href: @url, **options) { Icon(@label) }
     end
 
-    private def options = (@url == "#") ? {class: "invisible"} : {class: "text-stone-500 hover:text-green-500", rel: @label}
+    private def options = (@url == "#") ? {class: "invisible"} : {class: theme.pagination_link, rel: @label}
   end
 end

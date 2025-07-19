@@ -7,54 +7,74 @@ class Platinum::Page < Platinum::Slotted
   include Phlex::Rails::Helpers::JavascriptIncludeTag
   include Phlex::Rails::Helpers::Flash
   include Phlex::Rails::Helpers::T
-  register_element :sl_drawer
+  include Phlex::Rails::Helpers::ClassNames
 
-  def initialize page_title, theme: nil
-    Platinum::Theme.current = theme || Platinum::Theme.new
-    @html_head = nil
+  def initialize page_title, home_url: "/"
     @page_title = page_title
-    @title = nil
+    @html_head = nil
+    @title_bar = nil
+    @home_url = home_url
+
+    @sidebar = nil
     @breadcrumbs = []
-    @navigation = nil
-    @profile_link = nil
-    @sign_out_link = nil
+    @profile = nil
+    @sign_out = nil
+
+    @toolbars = []
     @filters = []
     @search = nil
     @pagination = nil
-    @toolbars = Set.new
-    self.class.current = self
+
+    Platinum::Page.current = self
   end
 
   def html_head(&contents) = @html_head = contents
 
-  def title(&contents) = @title = contents
+  def title_bar(&contents) = @title_bar = contents
 
-  def breadcrumb(&contents) = @breadcrumbs << contents
+  def sidebar(&contents) = @sidebar = contents
+
+  def breadcrumb(&contents)
+    @breadcrumbs << contents if vanishing
+  end
+
+  def profile(&contents) = @profile = contents
+
+  def sign_out(&contents) = @sign_out = contents
 
   def navigation(&contents) = @navigation = contents
 
-  def profile_link(&contents) = @profile_link = contents
+  def filter(&contents)
+    @filters << contents if vanishing
+  end
 
-  def sign_out_link(&contents) = @sign_out_link = contents
-
-  def filter(&contents) = @filters << contents
+  def toolbar(&contents)
+    @toolbars << contents if vanishing
+  end
 
   def search(&contents) = @search = contents
 
-  def toolbar(&contents) = @toolbars << contents
-
   def pagination(&contents) = @pagination = contents
+
+  def contents(&contents) = @contents = contents
 
   def view_template(&)
     doctype
     html do
-      head do
-        render_head
-      end
-      body class: theme.body do
-        render_header
-        render_main(&)
-        render_footer
+      head { render_head }
+      body class: theme.body, data: {controller: "platinum-layout"} do
+        render_sidebar
+        main(class: theme.main) do
+          Platinum::Column(gap: 2, class: "flex-1") { yield }
+        end
+        header class: theme.header do
+          render_mobile_header
+          render_desktop_header
+        end
+        footer class: theme.footer do
+          render_mobile_footer
+          render_desktop_footer
+        end
       end
     end
   end
@@ -74,181 +94,136 @@ class Platinum::Page < Platinum::Slotted
     javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
   end
 
-  private def render_header
-    header class: ["fixed left-0 right-0 top-0 z-2 py-1 px-1", theme.overlay], gap: 4 do
-      H 3 do
-        Column class: "block md:hidden flex-grow" do
-          render_small_header
-        end
-        Column class: "hidden md:block flex-grow" do
-          render_large_header
-        end
-      end
-    end
-  end
-
-  private def render_main(&contents)
-    main class: ["py-4"] do
-      Row items: "stretch", class: "py-16" do
-        Column justify: "start", class: "hidden md:flex px-4 min-w-xs w-sm" do
-          render_large_sidebar
-        end
-        Column(class: "flex-grow") do
-          contents&.call
+  private def render_sidebar
+    aside class: theme.sidebar_container, data: {platinum_layout_target: "sidebar"} do
+      Platinum::Column(justify: "start", class: "flex-1") { @sidebar&.call }
+      Platinum::Column(justify: "end", class: "shrink-0") do
+        Platinum::Row(justify: "between", items: "end", gap: 4, class: theme.sidebar_separator) do
+          figure(&@profile)
+          figure(&@sign_out)
         end
       end
     end
   end
 
-  private def render_footer
-    footer class: ["fixed", "left-0", "right-0", "bottom-0", "z-1", "py-1", "px-1", theme.overlay], gap: 4 do
-      H 4 do
-        Row justify: "start", items: "center", gap: 4 do
-          render_small_footer
-          render_large_footer
+  private def render_mobile_header
+    nav class: theme.mobile_nav do
+      Platinum::Row(gap: 2, class: "w-full") do
+        a(href: @home_url, class: theme.link) { Icon("home") }
+        h1(class: %w[flex-1 text-center]) { render_title_bar }
+        Platinum::DrawerButton(caption: "☰", position: "right") do
+          div(data: {platinum_layout_target: "mobileBreadcrumbs"})
+          div(data: {platinum_layout_target: "mobileSidebar"})
+        end
+      end
+    end
+  end
+
+  private def render_mobile_footer
+    nav class: theme.mobile_nav do
+      Platinum::Row(gap: 2, class: "w-full") do
+        Platinum::Row(justify: "start", class: "flex-1") do
           render_pagination
+          render_mobile_search_button
+        end
+        Platinum::Row(justify: "end", class: "shrink-0") do
+          render_mobile_toolbars_button
+          render_mobile_filters_button
         end
       end
     end
   end
 
-  # Small screens
-
-  private def render_small_header
-    Row do
-      Row justify: "start" do
-        render_home_breadcrumb
-        span(&@title)
-      end
-      render_small_sidebar
-    end
-  end
-
-  private def render_small_sidebar
-    div data: {controller: "drawer"} do
-      a href: "#", class: theme.link, data: {action: "drawer#open"} do
-        Icon theme.navigation_icon
-      end
-      sl_drawer label: @page_title, data: {drawer_target: "drawer"} do
-        Column justify: "between", class: ["h-full mb-2 p-2 z-1", theme.overlay] do
-          Column justify: "start" do
-            render_breadcrumbs
-            render_navigation
-          end
-          Column justify: "end" do
-            render_profile
-          end
+  private def render_desktop_header
+    nav class: theme.desktop_nav do
+      Platinum::Row(gap: 2, class: "w-full") do
+        Platinum::Row(justify: "start", class: "shrink-0") do
+          a(href: @home_url, class: theme.link) { Icon("home") }
+          Platinum::Row(justify: "start", wrap: false, data: {platinum_layout_target: "breadcrumbs"}) { render_breadcrumbs }
+        end
+        Platinum::Row(justify: "end", class: "flex-1") do
+          h1(class: %w[shrink-0]) { render_title_bar }
         end
       end
     end
-  end
-
-  private def render_small_footer
-    render_small_filters
-    render_small_toolbars
-  end
-
-  private def render_small_filters
-    if @filters.any?
-      Expander icon: theme.filters_icon, class: "inline md:hidden" do
-        Column(gap: 4, items: "stretch") { render_popup_items(@filters) }
+    nav id: "platinum-desktop-second-row", class: theme.desktop_header_row do
+      Platinum::Row class: "w-full" do
+        Platinum::Row(justify: "start", wrap: false, class: "flex-1", data: {platinum_layout_target: "filters"}) { render_filters }
+        Platinum::Row(justify: "end", class: "shrink-0", data: {platinum_layout_target: "search"}) { render_search }
       end
     end
   end
 
-  private def render_small_toolbars
-    if @toolbars.any?
-      Expander icon: theme.toolbars_icon, class: "inline md:hidden" do
-        Column(gap: 4, items: "stretch") { render_popup_items(@toolbars) }
+  private def render_desktop_footer
+    nav class: theme.desktop_nav do
+      Platinum::Row class: "w-full" do
+        Platinum::Row(justify: "start", wrap: false, class: "flex-1") { render_pagination }
+        Platinum::Row(justify: "end", class: "shrink-0", data: {platinum_layout_target: "toolbars"}) { render_toolbars }
       end
-    end
-  end
-
-  # Large screens
-
-  private def render_large_header
-    Row do
-      Row justify: "start" do
-        render_home_breadcrumb
-        render_breadcrumbs
-      end
-      span(&@title)
-    end
-    Row do
-      render_large_filters
-      render_search
-    end
-  end
-
-  private def render_large_sidebar
-    Column justify: "between", class: ["h-full mb-2 p-2 z-1", theme.overlay] do
-      Column justify: "start" do
-        render_navigation
-      end
-      Column justify: "end" do
-        render_profile
-      end
-    end
-  end
-
-  private def render_large_footer
-    Row items: "center" do
-      render_large_toolbars
-    end
-  end
-
-  private def render_large_filters
-    Row(class: "hidden md:flex") { render_popup_items(@filters) } if @filters.any?
-  end
-
-  private def render_large_toolbars
-    Row(class: "hidden md:flex") { render_popup_items(@toolbars) } if @toolbars.any?
-  end
-
-  # Common to small and large screens
-
-  private def render_home_breadcrumb = Breadcrumb { a(href: "/", class: theme.link, data: {turbo_frame: "_top"}) { Icon theme.home_icon } }
-
-  private def render_navigation = @navigation&.call
-
-  private def render_profile css_class = nil
-    Row items: "center", class: [theme.panel, css_class] do
-      render_profile_link
-      render_sign_out_link
     end
   end
 
   private def render_breadcrumbs
-    Row(justify: "start", gap: 1, wrap: true) do
+    Platinum::Row(justify: "start", gap: 1) do
       @breadcrumbs.each do |breadcrumb|
-        Breadcrumb(&breadcrumb)
+        span { Platinum::Breadcrumb(&breadcrumb) }
       end
     end
   end
 
-  private def render_search
-    Row(&@search) if @search.present?
+  private def render_mobile_toolbars_button
+    Platinum::DrawerButton(caption: "⚙️", position: "bottom", hidden: @toolbars.empty?) do
+      Platinum::Column() do
+        div(data: {platinum_layout_target: "mobileToolbars"})
+      end
+    end
   end
+
+  private def render_mobile_filters_button
+    Platinum::DrawerButton(caption: "↕", position: "bottom", hidden: @filters.empty?) do
+      div(data: {platinum_layout_target: "mobileFilters"})
+    end
+  end
+
+  private def render_mobile_search_button
+    Platinum::DrawerButton(caption: "🔎", position: "bottom", hidden: @search.nil?) do
+      div(data: {platinum_layout_target: "mobileSearch"})
+    end
+  end
+
+  private def render_filters
+    @filters.each do |filter|
+      figure(class: theme.filter_container, &filter)
+    end
+  end
+
+  private def render_search = @search&.call
 
   private def render_pagination = @pagination&.call
 
-  private def render_popup_items(items) = items.each { |item| render_popup_item(&item) }
+  private def render_toolbars
+    @toolbars.each do |toolbar|
+      figure(class: theme.toolbar_container, &toolbar)
+    end
+  end
 
-  private def render_popup_item(&) = Scroll { Row(justify: "start", &) }
-
-  private def render_profile_link = @profile_link&.call
-
-  private def render_sign_out_link = @sign_out_link&.call
+  private def render_title_bar
+    @title_bar.nil? ? @page_title.to_s : @title_bar.call
+  end
 
   private def default_head
     # link rel: "manifest", href: pwa_manifest_path(format: :json)
     link rel: "icon", href: "/icon.png", type: "image/png"
     link rel: "icon", href: "/icon.svg", type: "image/svg+xml"
     link rel: "apple-touch-icon", href: "/icon.png"
-    link rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    link rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
   end
 
   class << self
-    attr_accessor :current
+    def current = Thread.current[:platinum_page]
+
+    def current=(value)
+      Thread.current[:platinum_page] = value
+    end
   end
 end

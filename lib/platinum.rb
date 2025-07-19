@@ -16,6 +16,16 @@ module Platinum
   require_relative "platinum/pagination"
   require_relative "platinum/card"
   require_relative "platinum/scroll"
+  require_relative "platinum/alert"
+  require_relative "platinum/back_link"
+  require_relative "platinum/badge"
+  require_relative "platinum/button"
+  require_relative "platinum/copy_text_field"
+  require_relative "platinum/details_list"
+  require_relative "platinum/list"
+  require_relative "platinum/rich_text_viewer"
+  require_relative "platinum/form/search"
+  require_relative "platinum/form/password_field"
   require_relative "platinum/page"
 
   class Error < StandardError; end

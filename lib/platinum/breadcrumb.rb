@@ -2,7 +2,7 @@
 
 class Platinum::Breadcrumb < Platinum::Base
   def view_template(&contents)
-    Row(gap: 1) do
+    Platinum::Row(gap: 1) do
       contents&.call
       Icon(theme.breadcrumb_icon, class: theme.muted)
     end

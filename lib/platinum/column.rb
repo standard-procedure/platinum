@@ -2,6 +2,7 @@
 
 class Platinum::Column < Platinum::Flex
   def initialize gap: 2, justify: :start, items: :stretch, wrap: false, **attributes
-    super(direction: "col", gap: gap, justify: justify, items: items, wrap: wrap, **attributes)
+    direction = wrap ? :wrapped_column : :scrolling_column
+    super(direction: direction, gap: gap, justify: justify, items: items, **attributes)
   end
 end
