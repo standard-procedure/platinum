@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Platinum::Alert < Components::Base
+class Platinum::Alert < Platinum::Base
   def initialize style = :info, title:, icon: nil, message: "", **attributes
     style = ICONS.key?(style.to_sym) ? style.to_sym : :info
     @icon = icon || ICONS[style]
