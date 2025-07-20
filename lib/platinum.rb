@@ -27,6 +27,7 @@ module Platinum
   require_relative "platinum/form"
   require_relative "platinum/form/search"
   require_relative "platinum/form/password_field"
+  require_relative "platinum/drawer_button"
   require_relative "platinum/page"
 
   class Error < StandardError; end
