@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Platinum::Badge < Components::Base
+class Platinum::Badge < Platinum::Base
   def initialize **attributes
     @class = [attributes.delete(:class) || theme.badge, theme.badge_frame]
   end
