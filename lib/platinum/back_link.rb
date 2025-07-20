@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Platinum::BackLink < Components::Base
+class Platinum::BackLink < Platinum::Base
   include Phlex::Rails::Helpers::LinkTo
 
   def initialize url: nil, icon: nil, text: nil, turbo_frame: "_top", **attributes
