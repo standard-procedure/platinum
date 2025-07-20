@@ -215,6 +215,7 @@ class Platinum::Page < Platinum::Slotted
     link rel: "icon", href: "/icon.png", type: "image/png"
     link rel: "icon", href: "/icon.svg", type: "image/svg+xml"
     link rel: "apple-touch-icon", href: "/icon.png"
+    link rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
   end
 
   class << self
