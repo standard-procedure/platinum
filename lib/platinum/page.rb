@@ -61,6 +61,7 @@ class Platinum::Page < Platinum::Slotted
       body class: theme.body, data: {controller: "platinum-layout"} do
         render_sidebar
         main(class: theme.main) do
+          Flash()
           Platinum::Column(gap: 2, class: "flex-1") { yield }
         end
         header class: theme.header do
@@ -105,7 +106,7 @@ class Platinum::Page < Platinum::Slotted
   private def render_mobile_header
     nav class: theme.mobile_nav do
       Platinum::Row(gap: 2, class: "w-full") do
-        a(href: @home_url, class: theme.link) { Icon("home") }
+        a(href: @home_url, class: theme.link) { Icon(theme.home_icon) }
         h1(class: %w[flex-1 text-center]) { render_title_bar }
         Platinum::DrawerButton(caption: "☰", position: "right") do
           div(data: {platinum_layout_target: "mobileBreadcrumbs"})
@@ -134,7 +135,7 @@ class Platinum::Page < Platinum::Slotted
     nav class: theme.desktop_nav do
       Platinum::Row(gap: 2, class: "w-full") do
         Platinum::Row(justify: "start", class: "shrink-0") do
-          a(href: @home_url, class: theme.link) { Icon("home") }
+          a(href: @home_url, class: theme.link) { Icon(theme.home_icon) }
           Platinum::Row(justify: "start", wrap: false, data: {platinum_layout_target: "breadcrumbs"}) { render_breadcrumbs }
         end
         Platinum::Row(justify: "end", class: "flex-1") do
@@ -204,7 +205,9 @@ class Platinum::Page < Platinum::Slotted
   end
 
   private def render_title_bar
-    @title_bar.nil? ? @page_title.to_s : @title_bar.call
+    Row(justify: "start") do
+      @title_bar.nil? ? @page_title.to_s : @title_bar.call
+    end
   end
 
   private def default_head

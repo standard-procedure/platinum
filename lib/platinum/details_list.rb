@@ -32,7 +32,7 @@ class Platinum::DetailsList < Platinum::Slotted
   private def draw_edit_link_to title
     a(**@link_to) do
       Platinum::Row(justify: "start", gap: 1) do
-        Icon "edit"
+        Icon(theme.edit_icon)
         span(&title)
       end
     end

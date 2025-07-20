@@ -17,6 +17,7 @@ module Platinum
   require_relative "platinum/card"
   require_relative "platinum/scroll"
   require_relative "platinum/alert"
+  require_relative "platinum/flash"
   require_relative "platinum/back_link"
   require_relative "platinum/badge"
   require_relative "platinum/button"
