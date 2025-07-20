@@ -42,8 +42,6 @@ class Platinum::Page < Platinum::Slotted
 
   def sign_out(&contents) = @sign_out = contents
 
-  def navigation(&contents) = @navigation = contents
-
   def filter(&contents)
     @filters << contents if vanishing
   end
@@ -55,8 +53,6 @@ class Platinum::Page < Platinum::Slotted
   def search(&contents) = @search = contents
 
   def pagination(&contents) = @pagination = contents
-
-  def contents(&contents) = @contents = contents
 
   def view_template(&)
     doctype
