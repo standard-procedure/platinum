@@ -37,7 +37,29 @@ Rails.application.config.after_initialize do
 end
 ```
 
-Copy and install the `platinum_layout.js`, `delayed_close.js`, `drawer.js` and `search_form.js` stimulus controllers into your `javascript/controllers` folder.
+Copy and install the `platinum_layout.js`, `delayed_close.js`, `drawer.js` and `search_form.js` stimulus controllers into your `app/javascript/controllers` folder.
+
+Add `@stimulus-components/password-visibility` and `@stimulus-components/clipboard` to your javascript bundle or import-map
+
+Update `app/javascript/controllers/index.js` to reference all those components: 
+
+```javascript
+import { application } from "./application"
+
+import Clipboard from "@stimulus-components/clipboard"
+application.register("clipboard", Clipboard)
+import DelayedClose from "./delayed_close"
+application.register("delayed-close", DelayedClose)
+import Drawer from "./drawer"
+application.register("drawer", Drawer)
+import PasswordVisibility from "@stimulus-components/password-visibility"
+application.register("password-visibility", PasswordVisibility)
+import PlatinumLayout from "./platinum_layout"
+application.register("platinum-layout", PlatinumLayout)
+import SearchForm from "./search_form"
+application.register("search-form", SearchForm)
+```
+
 
 ## Usage
 

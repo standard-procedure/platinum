@@ -67,7 +67,7 @@ class Platinum::Theme
     wrapped_column: %w[flex flex-col items-stretch justify-start flex-wrap],
     scrolling_column: %w[flex flex-col items-center justify-start flex-nowrap overflow-y-auto],
     card_outer: %w[block m-1 p-1 md:p-2 rounded-lg border border-neutral-200 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800/30],
-    card_inner: %w[p-1 block md:flex md:justify-between md:gap-4 rounded-lg border border-white bg-neutral-100 hover:bg-white hover:border-neutral-200 dark:border-black dark:bg-neutral-800 dark:hover:bg-black dark:hover:border-neutral-700],
+    card_inner: %w[p-1 md:p-2 block md:flex md:justify-between md:gap-4 rounded-lg border border-white bg-white hover:border-neutral-200 dark:border-black dark:bg-black dark:hover:border-neutral-700],
     drawer_backdrop: %w[fixed inset-0 backdrop-blur-lg z-40 opacity-0 pointer-events-none transition-opacity duration-300 bg-neutral-700/10 dark:bg-neutral-300/10],
     drawer_background: %w[fixed z-50 overflow-hidden transition-transform duration-300 ease-out py-4 px-4 backdrop-blur-lg rounded-sm border border-neutral-50 bg-white/30 md:bg-neutral-100/30 dark:border-neutral-800 dark:bg-black/30 md:dark:bg-neutral-700/30],
     inset_button: %w[rounded-md px-2 py-1 backdrop-blur-xs text-neutral-400 bg-neutral-200/30 hover:bg-green-100 hover:text-green-700 dark:text-neutral-600 dark:bg-neutral-800/30 dark:hover:bg-green-900 dark:hover:text-green-300],
