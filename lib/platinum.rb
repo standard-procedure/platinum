@@ -20,6 +20,7 @@ module Platinum
   require_relative "platinum/flash"
   require_relative "platinum/back_link"
   require_relative "platinum/badge"
+  require_relative "platinum/a"
   require_relative "platinum/button"
   require_relative "platinum/copy_text_field"
   require_relative "platinum/details_list"
