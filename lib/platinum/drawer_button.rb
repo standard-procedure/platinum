@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-class Platinum::DrawerButton < Platinum::Base
+class Platinum::DrawerButton < Platinum::Slotted
   include Phlex::Rails::Helpers::ClassNames
 
   def initialize caption: nil, position: "bottom", hidden: false
-    @caption = caption
+    @icon = caption
     @position = position
     @hidden = hidden
+  end
+
+  def icon(&contents)
+    @icon = contents
   end
 
   def view_template(&)
@@ -16,5 +20,5 @@ class Platinum::DrawerButton < Platinum::Base
     end
   end
 
-  private def render_caption = @caption.respond_to?(:call) ? @caption.call : @caption.to_s
+  private def render_icon = @icon.respond_to?(:call) ? @icon.call : @icon.to_s
 end

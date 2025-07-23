@@ -25,6 +25,10 @@ class Platinum::Theme
     show_password_icon: "eye",
     hide_password_icon: "eye-slash",
     search_icon: "search",
+    clear_icon: "x-circle",
+    filter_icon: "filter",
+    toolbar_icon: "gear",
+    sidebar_icon: "menu-down",
     # layout
     body: %w[flex flex-row justify-between items-stretch font-light text-base bg-white text-neutral-700 dark:bg-black dark:text-neutral-300],
     sidebar_container: %w[shrink-0 h-svh flex flex-col justify-between items-stretch pt-12 md:pt-24 pb-12 border-r border-neutral-300 dark:border-neutral-600],

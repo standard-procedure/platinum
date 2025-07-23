@@ -108,7 +108,8 @@ class Platinum::Page < Platinum::Slotted
       Platinum::Row(gap: 2, class: "w-full") do
         a(href: @home_url, class: theme.link) { Icon(theme.home_icon) }
         h1(class: %w[flex-1 text-center]) { render_title_bar }
-        Platinum::DrawerButton(caption: "☰", position: "right") do
+        Platinum::DrawerButton(position: "right") do |drawer|
+          drawer.icon { Icon(theme.sidebar_icon) }
           div(data: {platinum_layout_target: "mobileBreadcrumbs"})
           div(data: {platinum_layout_target: "mobileSidebar"})
         end
@@ -169,7 +170,8 @@ class Platinum::Page < Platinum::Slotted
   end
 
   private def render_mobile_toolbars_button
-    Platinum::DrawerButton(caption: "⚙️", position: "bottom", hidden: @toolbars.empty?) do
+    Platinum::DrawerButton(position: "bottom", hidden: @toolbars.empty?) do |drawer|
+      drawer.icon { Icon(theme.toolbar_icon) }
       Platinum::Column() do
         div(data: {platinum_layout_target: "mobileToolbars"})
       end
@@ -177,13 +179,16 @@ class Platinum::Page < Platinum::Slotted
   end
 
   private def render_mobile_filters_button
-    Platinum::DrawerButton(caption: "↕", position: "bottom", hidden: @filters.empty?) do
+    Platinum::DrawerButton(position: "bottom", hidden: @filters.empty?) do |drawer|
+      drawer.icon { Icon(theme.filter_icon) }
       div(data: {platinum_layout_target: "mobileFilters"})
     end
   end
 
   private def render_mobile_search_button
-    Platinum::DrawerButton(caption: "🔎", position: "bottom", hidden: @search.nil?) do
+    Platinum::DrawerButton(position: "bottom", hidden: @search.nil?) do |drawer|
+      drawer.icon { Icon(theme.search_icon) }
+
       div(data: {platinum_layout_target: "mobileSearch"})
     end
   end
