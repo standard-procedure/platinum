@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class Platinum::LinkTo < Platinum::Base
-  def initialize text = nil, href:, icon: nil, **attributes
+  def initialize text = nil, icon: nil, **attributes
     @text = text
     @icon = icon
-    @href = href
     @attributes = attributes
   end
 
