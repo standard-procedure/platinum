@@ -32,7 +32,7 @@ class Platinum::Pagination < Platinum::Slotted
     end
 
     def view_template
-      a(href: @url, **options) { Icon(icon.call) }
+      a(href: @url, **options) { Icon(icon) }
     end
 
     private def options = (@url == "#") ? {class: "invisible"} : {class: theme.pagination_link, rel: @label}
