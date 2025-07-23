@@ -125,8 +125,8 @@ class Platinum::Page < Platinum::Slotted
           render_mobile_search_button
         end
         Platinum::Row(justify: "end", class: "shrink-0") do
-          render_mobile_toolbars_button
           render_mobile_filters_button
+          render_mobile_toolbars_button
         end
       end
     end

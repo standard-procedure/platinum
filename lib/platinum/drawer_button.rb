@@ -14,7 +14,7 @@ class Platinum::DrawerButton < Platinum::Slotted
   end
 
   def view_template(&)
-    div(class: class_names("p-4" => true, "hidden" => @hidden), data: {controller: "drawer", drawer_position_value: @position, drawer_backdrop_value: theme.drawer_backdrop, drawer_contents_value: theme.drawer_background}) do
+    div(class: class_names("md:p-4" => true, "hidden" => @hidden), data: {controller: "drawer", drawer_position_value: @position, drawer_backdrop_value: theme.drawer_backdrop, drawer_contents_value: theme.drawer_background}) do
       button(class: theme.button, data: {action: "drawer#open"}) { render_icon }
       div(class: "hidden", data: {drawer_target: "contents"}, &)
     end
