@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Platinum::Form::PasswordField < Platinum::Base
+class Platinum::PasswordField < Platinum::Base
   def initialize form, attribute = :password, **attributes
     @form = form
     @attribute = attribute

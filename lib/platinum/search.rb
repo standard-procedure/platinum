@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Platinum::Form::Search < Platinum::Base
+class Platinum::Search < Platinum::Base
   def initialize url, value = "", method: "get", label: nil, placeholder: nil, name: "search", **attributes
     @label = label
     @placeholder = placeholder
