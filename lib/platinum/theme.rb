@@ -29,6 +29,11 @@ class Platinum::Theme
     filter_icon: "filter",
     toolbar_icon: "gear",
     sidebar_icon: "menu-down",
+    cancel_icon: "arrow-left-circle",
+    first_icon: "caret-left-square",
+    previous_icon: "caret-left",
+    next_icon: "caret-right",
+    last_icon: "caret-right-square",
     # layout
     body: %w[flex flex-row justify-between items-stretch font-light text-base bg-white text-neutral-700 dark:bg-black dark:text-neutral-300],
     sidebar_container: %w[shrink-0 h-svh flex flex-col justify-between items-stretch pt-12 md:pt-24 pb-12 border-r border-neutral-300 dark:border-neutral-600],
