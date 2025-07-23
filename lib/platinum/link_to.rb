@@ -9,7 +9,7 @@ class Platinum::LinkTo < Platinum::Base
   end
 
   def view_template
-    A(**attributes) do
+    A(**@attributes) do
       @text.nil? ? yield : draw_text_and_icon
     end
   end
