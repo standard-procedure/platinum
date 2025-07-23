@@ -36,12 +36,6 @@ class Platinum::Pagination < Platinum::Slotted
     end
 
     private def options = (@url == "#") ? {class: "invisible"} : {class: theme.pagination_link, rel: @label}
-    private def icon = instance_eval(&ICONS[@label.to_sym])
-    ICONS = {
-      first: -> { theme.first_icon },
-      previous: -> { theme.previous_icon },
-      next: -> { theme.next_icon },
-      last: -> { theme.last_icon }
-    }
+    private def icon = theme.send(:"#{@label}_icon")
   end
 end
