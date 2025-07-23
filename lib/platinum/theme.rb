@@ -10,7 +10,7 @@ class Platinum::Theme
     def current = Thread.current[:platinum_theme]
 
     def load config = {}
-      Thread.current[:platinum_theme] = Platinum::Theme.new(config: config)
+      Thread.current[:platinum_theme] = new(config: config)
     end
   end
 
