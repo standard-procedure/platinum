@@ -5,17 +5,15 @@ class Platinum::Pagination < Platinum::Slotted
     @collection = collection
     @range = (1..@collection.total_pages)
     @url_generator = url_generator
-    @inner_class = theme.pagination_inner
-    @inner_text_class = theme.pagination_text
   end
 
   def render? = @collection.total_pages > 1
 
   def view_template
-    Platinum::Row(class: @inner_class, gap: 4, items: "center") do
+    Platinum::Row(class: theme.pagination_inner, gap: 4, items: "center") do
       render Link.new(link_for(1), label: :first)
       render Link.new(link_for(@collection.prev_page), label: :previous)
-      span(class: @inner_text_class) { "#{@collection.current_page}/#{@collection.total_pages}" }
+      span(class: theme.pagination_text) { "#{@collection.current_page}/#{@collection.total_pages}" }
       render Link.new(link_for(@collection.next_page), label: :next)
       render Link.new(link_for(@collection.total_pages), label: :last)
     end
@@ -35,7 +33,7 @@ class Platinum::Pagination < Platinum::Slotted
       a(href: @url, **options) { Icon(icon) }
     end
 
-    private def options = (@url == "#") ? {class: "invisible"} : {class: theme.pagination_link, rel: @label}
+    private def options = (@url == "#") ? {class: "hidden"} : {class: theme.pagination_link, rel: @label}
     private def icon = theme.send(:"#{@label}_icon")
   end
 end
