@@ -22,6 +22,7 @@ module Platinum
   require_relative "platinum/badge"
   require_relative "platinum/a"
   require_relative "platinum/button"
+  require_relative "platinum/link_to"
   require_relative "platinum/copy_text_field"
   require_relative "platinum/details_list"
   require_relative "platinum/list"
