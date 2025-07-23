@@ -14,7 +14,7 @@ class Platinum::Icon < Platinum::Base
   private def icon = i(**mix(class: @class, **@options))
 
   private def icon_with_text
-    Row(gap: 1, **@options) do
+    Row(gap: 1, justify: "start", **@options) do
       i(class: @class)
       span { @text }
     end
