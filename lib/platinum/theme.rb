@@ -31,6 +31,7 @@ class Platinum::Theme
     sidebar_icon: "menu-down",
     add_icon: "plus-square",
     edit_icon: "pencil-square",
+    delete_icon: "x-square-fill",
     cancel_icon: "arrow-left-square",
     first_icon: "caret-left-square",
     previous_icon: "caret-left",
