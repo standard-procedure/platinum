@@ -97,7 +97,7 @@ class DocumentsPage < Components::Base
       document_categories.each do |category|
         page.filter { draw_document_category_link(category) }
       end
-      page.search { Form::Search(admin_documents_path, @search) }
+      page.search { Search(admin_documents_path, @search) }
       page.pagination { draw_pagination_control } 
 
       # main contents ...
