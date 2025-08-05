@@ -80,7 +80,9 @@ class Platinum::Theme
     h: {1 => "text-2xl font-bold", 2 => "text-xl font-medium border-b border-neutral-600 dark:border-neutral-300", 3 => "text-xl font-bold", 4 => "text-lg font-bold", 5 => "text-base font-bold", 6 => "text-sm font-bold"},
     muted: "text-neutral-500 dark:text-neutral-500",
     # forms
-    input: "w-full px-3 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 border border-neutral-300 bg-white text-neutral-800 placeholder-neutral-500 focus:ring-green-500 disabled:bg-neutral-50 disabled:text-neutral-500 dark:border-neutral-600 dark:bg-black dark:text-neutral-200 dark:placeholder-neutral-500 dark:focus:ring-green-600 dark:disabled:bg-neutral-900 dark:disabled:text-neutral-500",
+    label: "w-full px-3 py-2 rounded-md bg-white text-neutral-600 dark:bg-black dark:text-neutral-400",
+    required_label: "w-full px-3 py-2 rounded-md bg-neutral-50 text-neutral-600 dark:bg-neutral-900 dark:text-neutral-400",
+    input: "w-full px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-1 border border-neutral-300 bg-white text-neutral-800 placeholder-neutral-500 focus:ring-green-500 disabled:bg-neutral-50 disabled:text-neutral-500 dark:border-neutral-600 dark:bg-black dark:text-neutral-200 dark:placeholder-neutral-500 dark:focus:ring-green-600 dark:disabled:bg-neutral-900 dark:disabled:text-neutral-500",
     inset_button: %w[rounded-md px-2 py-1 backdrop-blur-xs text-neutral-400 bg-neutral-200/30 hover:bg-green-100 hover:text-green-700 dark:text-neutral-600 dark:bg-neutral-800/30 dark:hover:bg-green-900 dark:hover:text-green-300],
     inset_danger_button: %w[rounded-md px-2 py-1 backdrop-blur-xs text-neutral-400 bg-neutral-200/30 hover:bg-red-100 hover:text-red-700 dark:text-neutral-600 dark:bg-neutral-800/30 dark:hover:bg-red-900 dark:hover:text-red-300],
     # buttons
