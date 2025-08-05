@@ -166,6 +166,7 @@ class Platinum::Page < Platinum::Slotted
       @breadcrumbs.each do |breadcrumb|
         span { Platinum::Breadcrumb(&breadcrumb) }
       end
+      span(class: "inline md:hidden") { @page_title.to_s }
     end
   end
 
