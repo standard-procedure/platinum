@@ -8,12 +8,14 @@ class Platinum::FormWith < Platinum::Base
     @form_params = form_params
   end
 
-  def view_template(&)
+  def view_template(&contents)
     Card do |card|
       card.title { @title.to_s } unless @title.nil?
 
       form_with(**@form_params) do |form|
-        Column gap: 1, class: "p-1", &
+        Column gap: 1, class: "p-1" do
+          contents.call(form)
+        end
       end
     end
   end
