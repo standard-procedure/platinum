@@ -9,13 +9,11 @@ class Platinum::FormWith < Platinum::Base
   end
 
   def view_template(&contents)
-    Card do |card|
-      card.title { @title.to_s } unless @title.nil?
+    card.title { @title.to_s } unless @title.nil?
 
-      form_with(**@form_params) do |form|
-        Column gap: 1, class: "p-1" do
-          contents.call(form)
-        end
+    form_with(**@form_params) do |form|
+      Column gap: 1, class: "p-1" do
+        contents.call(form)
       end
     end
   end
