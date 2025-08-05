@@ -27,7 +27,7 @@ module Platinum
   require_relative "platinum/details_list"
   require_relative "platinum/list"
   require_relative "platinum/rich_text_viewer"
-  require_relative "platinum/form"
+  require_relative "platinum/form_with"
   require_relative "platinum/search"
   require_relative "platinum/password_field"
   require_relative "platinum/submit"
