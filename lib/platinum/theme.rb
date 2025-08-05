@@ -35,7 +35,7 @@ class Platinum::Theme
     next_icon: "caret-right",
     last_icon: "caret-right-square",
     # layout
-    body: %w[flex flex-row justify-between items-stretch font-light text-base bg-white text-neutral-700 dark:bg-black dark:text-neutral-300],
+    body: %w[flex flex-row justify-between items-stretch font-light text-base bg-white text-neutral-700 dark:bg-black dark:text-neutral-100],
     sidebar_container: %w[shrink-0 h-svh flex flex-col justify-between items-stretch pt-12 md:pt-24 pb-12 border-r border-neutral-300 dark:border-neutral-600],
     sidebar_separator: %w[px-2 py-1 border-t border-neutral-300 dark:border-neutral-600],
     main: %w[flex-1 flex flex-col justify-start items-stretch pt-12 md:pt-24 pb-12],
@@ -48,7 +48,7 @@ class Platinum::Theme
     filter_container: %w[flex flex-col overflow-y-auto md:flex-row md:overflow-x-auto flex-nowrap items-stretch justify-start md:items-center ms:justify-start gap-1 rounded-lg backdrop-blur-lg border-neutral-50 bg-neutral-200/10 text-neutral-300 hover:border-white hover:bg-neutral-300 hover:text-neutral-800 dark:border-neutral-900 dark:bg-neutral-800/10 dark:text-neutral-700 dark:hover:border-black dark:hover:bg-neutral-700 dark:hover:text-neutral-800],
     filter_link: "px-2 py-1 block w-full md:w-auto text-sm font-light backdrop-blur-lg rounded-md text-neutral-600 bg-neutral-100/10 border-neutral-300 hover:text-neutral-100 hover:bg-neutral-800/80 hover:border-neutral-600 dark:text-neutral-400 dark:bg-neutral-700/10 dark:border-neutral-700 dark:hover:text-neutral-400 dark:hover:bg-neutral-600/80 dark:hover:border-neutral-400 hover:animate-pulse",
     selected_filter_link: "px-2 py-1 block w-full md:w-auto font-light backdrop-blur-lg rounded-md text-green-600 bg-green-300/10 border-green-300 hover:text-green-100 hover:bg-green-800/80 hover:border-green-600 dark:text-green-400 dark:bg-green-700/10 dark:border-green-700 dark:hover:text-green-400 dark:hover:bg-green-600/80 dark:hover:border-green-400 hover:animate-pulse",
-    drawer_button: "px-4 py-1 block font-light backdrop-blur-lg hover:animate-pulse border rounded-full text-neutral-400 bg-neutral-100/10 border-white hover:text-neutral-500 hover:bg-neutral-100 hover:border-neutral-200 dark:text-neutral-600 dark:bg-neutral-900/10 dark:border-black dark:hover:text-neutral-500 dark:hover:bg-neutral-900 dark:hover:border-neutral-800",
+    drawer_button: "px-4 py-1 block font-light backdrop-blur-lg hover:animate-pulse border rounded-full text-neutral-400 bg-green-100/10 border-white hover:text-neutral-500 hover:bg-green-100 hover:border-neutral-200 dark:text-neutral-400 dark:bg-green-900/10 dark:border-black dark:hover:text-neutral-300 dark:hover:bg-green-900 dark:hover:border-neutral-800",
     drawer_backdrop: %w[fixed inset-0 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 bg-transparent dark:bg-transparent],
     drawer_background: %w[fixed z-50 overflow-hidden transition-transform duration-300 ease-out py-4 px-4 backdrop-blur-lg rounded-sm border border-neutral-50 bg-neutral-200/30 md:bg-neutral-200 dark:border-neutral-800 dark:bg-neutral-800/30 md:dark:bg-neutral-800],
     # containers
@@ -61,7 +61,7 @@ class Platinum::Theme
     card_outer: %w[block m-1 p-1 md:px-4 rounded-lg border border-neutral-200 bg-neutral-100 dark:border-neutral-900 dark:bg-neutral-800],
     card_inner: %w[p-1 md:p-4 block md:flex md:justify-between md:gap-4 rounded-lg border border-white bg-white hover:border-neutral-200 dark:border-black dark:bg-black dark:hover:border-neutral-700],
     badge_frame: %w[inline rounded-full px-3 py-1 border text-sm whitespace-nowrap],
-    badge: %w[bg-neutral-50 text-neutral-800 hover:bg-neutral-200 hover:text-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:hover:text-neutral-300],
+    badge: %w[bg-neutral-50 text-neutral-800 hover:bg-neutral-200 hover:text-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-600 dark:hover:text-neutral-300],
     list: %w[text-sm bg-neutral-100 *:even:bg-neutral-50 dark:bg-neutral-900 *:even:dark:bg-neutral-800],
     list_item: %w[p-1 border-b border-neutral-200 dark:border-neutral-800],
     # accents

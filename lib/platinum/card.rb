@@ -4,7 +4,7 @@ class Platinum::Card < Platinum::Slotted
   def initialize **attributes
     @image = nil
     @title = nil
-    @attributes = mix(class: "mt-1 text-sm text-pretty text-neutral-700 w-full #{attributes.delete(:class)}", **attributes)
+    @attributes = mix(class: "mt-1 w-full #{attributes.delete(:class)}", **attributes)
   end
 
   def image(&contents) = @image = contents
@@ -19,7 +19,7 @@ class Platinum::Card < Platinum::Slotted
         end
         div class: "w-full" do
           if @title.present?
-            h3(class: "text-lg font-medium text-pretty text-neutral-900", &@title)
+            H(3, &@title)
           end
           div(**@attributes, &)
         end
