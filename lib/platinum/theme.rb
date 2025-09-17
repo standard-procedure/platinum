@@ -36,6 +36,7 @@ class Platinum::Theme
     previous_icon: "caret-left",
     next_icon: "caret-right",
     last_icon: "caret-right-square",
+    copy_icon: "copy", 
     # layout
     body: %w[flex flex-row justify-between items-stretch font-light text-base bg-white text-neutral-700 dark:bg-black dark:text-neutral-100],
     sidebar_container: %w[shrink-0 h-svh flex flex-col justify-between items-stretch pt-12 pb-12 border-r border-neutral-300 dark:border-neutral-600],
