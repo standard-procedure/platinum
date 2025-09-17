@@ -150,8 +150,8 @@ class Platinum::Page < Platinum::Slotted
       Platinum::Row class: "w-full" do
         Platinum::Row(justify: "start", class: "shrink-0") { render_pagination }
         Platinum::Row justify: "end", class: "flex-1" do
-          Platinum::Row(justify: "start", wrap: false, class: "flex-1", data: {platinum_layout_target: "filters"}) { render_filters }
-          Platinum::Row(justify: "end", class: "shrink-0") { render_toolbars }
+          Platinum::Row(justify: "start", wrap: false, data: {platinum_layout_target: "filters"}) { render_filters }
+          Platinum::Row(justify: "end", data: {platinum_layout_target: "toolbars"}) { render_toolbars }
         end
       end
     end
