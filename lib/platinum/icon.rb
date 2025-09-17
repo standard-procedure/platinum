@@ -16,7 +16,7 @@ class Platinum::Icon < Platinum::Base
   private def icon_with_text
     Row(gap: 1, justify: "start", **@options) do
       i(class: @class)
-      span(class: "group-open:hidden") { @text }
+      span(class: "group-open:hidden text-nowrap") { @text }
     end
   end
 

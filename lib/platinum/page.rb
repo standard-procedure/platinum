@@ -109,7 +109,7 @@ class Platinum::Page < Platinum::Slotted
         a(href: @home_url, class: theme.link) { Icon(theme.home_icon) }
         h1(class: %w[flex-1 text-center]) { render_title_bar }
         Platinum::DrawerButton(position: "right") do |drawer|
-          drawer.icon { Icon(theme.sidebar_icon) }
+          drawer.icon { Icon(theme.navigation_icon) }
           div(data: {platinum_layout_target: "mobileBreadcrumbs"})
           div(data: {platinum_layout_target: "mobileSidebar"})
         end
@@ -126,7 +126,7 @@ class Platinum::Page < Platinum::Slotted
         end
         Platinum::Row(justify: "end", class: "shrink-0") do
           render_mobile_filters_button
-          render_mobile_toolbars_button
+          render_toolbars_button
         end
       end
     end
@@ -135,18 +135,11 @@ class Platinum::Page < Platinum::Slotted
   private def render_desktop_header
     nav class: theme.desktop_nav do
       Platinum::Row(gap: 2, class: "w-full") do
-        Platinum::Row(justify: "start", class: "shrink-0") do
+        Platinum::Row(justify: "start", class: "flex-1") do
           a(href: @home_url, class: theme.link) { Icon(theme.home_icon) }
           Platinum::Row(justify: "start", wrap: false, data: {platinum_layout_target: "breadcrumbs"}) { render_breadcrumbs }
-        end
-        Platinum::Row(justify: "end", class: "flex-1") do
           h1(class: %w[shrink-0]) { render_title_bar }
         end
-      end
-    end
-    nav id: "platinum-desktop-second-row", class: theme.desktop_header_row do
-      Platinum::Row class: "w-full" do
-        Platinum::Row(justify: "start", wrap: false, class: "flex-1", data: {platinum_layout_target: "filters"}) { render_filters }
         Platinum::Row(justify: "end", class: "shrink-0", data: {platinum_layout_target: "search"}) { render_search }
       end
     end
@@ -155,8 +148,11 @@ class Platinum::Page < Platinum::Slotted
   private def render_desktop_footer
     nav class: theme.desktop_nav do
       Platinum::Row class: "w-full" do
-        Platinum::Row(justify: "start", wrap: false, class: "flex-1") { render_pagination }
-        Platinum::Row(justify: "end", class: "shrink-0", data: {platinum_layout_target: "toolbars"}) { render_toolbars }
+        Platinum::Row(justify: "start", class: "shrink-0") { render_pagination }
+        Platinum::Row justify: "end", class: "flex-1" do
+          Platinum::Row(justify: "start", wrap: false, class: "flex-1", data: {platinum_layout_target: "filters"}) { render_filters }
+          Platinum::Row(justify: "end", class: "shrink-0") { render_toolbars_button }
+        end
       end
     end
   end
@@ -170,11 +166,11 @@ class Platinum::Page < Platinum::Slotted
     end
   end
 
-  private def render_mobile_toolbars_button
+  private def render_toolbars_button
     Platinum::DrawerButton(position: "bottom", hidden: @toolbars.empty?) do |drawer|
       drawer.icon { Icon(theme.toolbar_icon) }
       Platinum::Column() do
-        div(data: {platinum_layout_target: "mobileToolbars"})
+        render_toolbars
       end
     end
   end
@@ -200,9 +196,9 @@ class Platinum::Page < Platinum::Slotted
     end
   end
 
-  private def render_search = @search&.call
+  private def render_search = span(class: theme.search_container, &@search)
 
-  private def render_pagination = @pagination&.call
+  private def render_pagination = span(class: theme.pagination_container, &@pagination)
 
   private def render_toolbars
     @toolbars.each do |toolbar|
