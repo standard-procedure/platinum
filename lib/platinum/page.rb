@@ -126,7 +126,7 @@ class Platinum::Page < Platinum::Slotted
         end
         Platinum::Row(justify: "end", class: "shrink-0") do
           render_mobile_filters_button
-          render_toolbars_button
+          render_mobile_toolbars_button
         end
       end
     end
@@ -151,7 +151,7 @@ class Platinum::Page < Platinum::Slotted
         Platinum::Row(justify: "start", class: "shrink-0") { render_pagination }
         Platinum::Row justify: "end", class: "flex-1" do
           Platinum::Row(justify: "start", wrap: false, class: "flex-1", data: {platinum_layout_target: "filters"}) { render_filters }
-          Platinum::Row(justify: "end", class: "shrink-0") { render_toolbars_button }
+          Platinum::Row(justify: "end", class: "shrink-0") { render_toolbars }
         end
       end
     end
@@ -166,11 +166,11 @@ class Platinum::Page < Platinum::Slotted
     end
   end
 
-  private def render_toolbars_button
+  private def render_mobile_toolbars_button
     Platinum::DrawerButton(position: "bottom", hidden: @toolbars.empty?) do |drawer|
       drawer.icon { Icon(theme.toolbar_icon) }
       Platinum::Column() do
-        render_toolbars
+        div(data: {platinum_layout_target: "mobileToolbars"})
       end
     end
   end
