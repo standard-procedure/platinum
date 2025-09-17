@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Platinum::RichTextViewer < Platinum::Base
-  def initialize rich_text, show_placeholder: true
+  def initialize rich_text, show_placeholder: false
     @rich_text = rich_text
     @show_placeholder = show_placeholder && @rich_text.to_plain_text.blank?
   end
@@ -13,9 +13,7 @@ class Platinum::RichTextViewer < Platinum::Base
   end
 
   private def draw_rich_text
-    render partial("/layouts/action_text/contents/content") do
-      @rich_text.to_s
-    end
+    div(class: "trix-content") { @rich_text.to_s }
   end
 
   private def placeholder = self.class.placeholder
