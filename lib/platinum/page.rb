@@ -5,7 +5,6 @@ class Platinum::Page < Platinum::Slotted
   include Phlex::Rails::Helpers::CSPMetaTag
   include Phlex::Rails::Helpers::StylesheetLinkTag
   include Phlex::Rails::Helpers::JavascriptIncludeTag
-  include Phlex::Rails::Helpers::Flash
   include Phlex::Rails::Helpers::T
   include Phlex::Rails::Helpers::ClassNames
 

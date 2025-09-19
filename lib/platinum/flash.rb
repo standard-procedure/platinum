@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Platinum::Flash < Platinum::Base
-  def initialize(flash = {})
-    @flash = flash
+  include Phlex::Rails::Helpers::Flash
+
+  def initialize(messages = {})
+    @flash = flash.merge messages
   end
 
   def render? = @flash[:alert].present? || @flash[:notice].present?
