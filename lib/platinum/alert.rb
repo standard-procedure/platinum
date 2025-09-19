@@ -25,14 +25,18 @@ class Platinum::Alert < Platinum::Base
 
   ICONS = {
     info: "info-circle",
+    notice: "info-circle",
     success: "check-circle",
     warning: "exclamation-circle",
+    alert: "exclamation-circle",
     danger: "exclamation-triangle-fill"
   }.freeze
   TITLE_FRAME_CSS = {
     info: -> { Platinum::Theme.current.info_alert_title_frame },
+    notice: -> { Platinum::Theme.current.info_alert_title_frame },
     success: -> { Platinum::Theme.current.success_alert_title_frame },
     warning: -> { Platinum::Theme.current.warning_alert_title_frame },
+    alert: -> { Platinum::Theme.current.warning_alert_title_frame },
     danger: -> { Platinum::Theme.current.danger_alert_title_frame }
   }.freeze
 end

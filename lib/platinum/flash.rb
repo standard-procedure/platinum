@@ -5,9 +5,9 @@ class Platinum::Flash < Platinum::Base
 
   def view_template(&)
     keys.each do |key|
-      Alert(key, title: flash[key].to_s) if flash[key].present?
+      Alert(key, title: flash[key].to_s)
     end
   end
 
-  def keys = Alert::ICONS.keys
+  def keys = Alert::ICONS.keys.select { |key| flash[key.to_sym].present? }
 end
