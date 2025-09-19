@@ -3,14 +3,14 @@
 class Platinum::Flash < Platinum::Base
   include Phlex::Rails::Helpers::Flash
 
-  def initialize(messages = {})
-    @flash = flash.merge messages
+  def initialize(flash = {})
+    @flash = flash
   end
-
-  def render? = @flash[:alert].present? || @flash[:notice].present?
 
   def view_template(&)
-    Alert(:warning, text: @flash[:alert].to_s) if @flash[:alert].present?
-    Alert(:info, text: @flash[:notice].to_s) if @flash[:notice].present?
+    Alert(:warning, text: messages[:alert].to_s) if messages[:alert].present?
+    Alert(:info, text: messages[:notice].to_s) if messages[:notice].present?
   end
+
+  def messages = flash.merge(@flash)
 end
