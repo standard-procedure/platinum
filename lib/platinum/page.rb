@@ -60,8 +60,8 @@ class Platinum::Page < Platinum::Slotted
       body class: theme.body, data: {controller: "platinum-layout"} do
         render_sidebar
         main(class: theme.main) do
+          Flash()
           Platinum::Column(gap: 2, class: "flex-1") do
-            Flash()
             yield
           end
         end
