@@ -4,8 +4,13 @@ class Platinum::Flash < Platinum::Base
   include Phlex::Rails::Helpers::Flash
 
   def view_template(&)
-    keys.each do |key|
-      Alert(key, text: flash[key].to_s) if flash[key].present?
+    span { flash[:alert].to_s }
+    span { flash[:notice].to_s }
+
+    Column do
+      keys.each do |key|
+        Alert(key, text: flash[key].to_s) if flash[key].present?
+      end
     end
   end
 
