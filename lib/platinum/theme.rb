@@ -36,7 +36,7 @@ class Platinum::Theme
     previous_icon: "caret-left",
     next_icon: "caret-right",
     last_icon: "caret-right-square",
-    copy_icon: "copy", 
+    copy_icon: "copy",
     # layout
     body: %w[flex flex-row justify-between items-stretch font-light text-base bg-white text-neutral-700 dark:bg-black dark:text-neutral-100],
     sidebar_container: %w[shrink-0 h-svh flex flex-col justify-between items-stretch pt-12 pb-12 border-r border-neutral-300 dark:border-neutral-600],
@@ -85,11 +85,15 @@ class Platinum::Theme
     h: {1 => "text-2xl font-bold", 2 => "text-xl font-medium border-b border-neutral-600 dark:border-neutral-300", 3 => "text-xl font-bold", 4 => "text-lg font-bold", 5 => "text-base font-bold", 6 => "text-sm font-bold"},
     muted: "text-neutral-500 dark:text-neutral-500",
     # forms
-    label: "w-full px-3 py-2 rounded-none bg-white text-neutral-600 dark:bg-black dark:text-neutral-400",
+    label: %w[w-full px-3 py-2 rounded-none bg-white text-neutral-600 dark:bg-black dark:text-neutral-400],
     required_label: "w-full px-3 py-2 rounded-none border-e border-green-600 bg-green-50 text-neutral-600 dark:border-green-400 dark:bg-green-900 dark:text-neutral-400",
+    inline_label: %w[rounded-none basis-xs font-bold bg-white text-neutral-600 dark:bg-black dark:text-neutral-400],
     input: "w-full px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-1 border border-neutral-300 bg-white text-neutral-800 placeholder-neutral-500 focus:ring-green-500 disabled:bg-neutral-50 disabled:text-neutral-500 dark:border-neutral-600 dark:bg-black dark:text-neutral-200 dark:placeholder-neutral-500 dark:focus:ring-green-600 dark:disabled:bg-neutral-900 dark:disabled:text-neutral-500",
+    inline_input: "rounded-md focus:outline-none focus:ring-2 focus:ring-offset-1 border border-neutral-300 bg-white text-neutral-800 placeholder-neutral-500 focus:ring-green-500 disabled:bg-neutral-50 disabled:text-neutral-500 dark:border-neutral-600 dark:bg-black dark:text-neutral-200 dark:placeholder-neutral-500 dark:focus:ring-green-600 dark:disabled:bg-neutral-900 dark:disabled:text-neutral-500",
     inset_button: %w[rounded-md px-2 py-1 backdrop-blur-xs text-neutral-400 bg-neutral-200/30 hover:bg-green-100 hover:text-green-700 dark:text-neutral-600 dark:bg-neutral-800/30 dark:hover:bg-green-900 dark:hover:text-green-300],
     inset_danger_button: %w[rounded-md px-2 py-1 backdrop-blur-xs text-neutral-400 bg-neutral-200/30 hover:bg-red-100 hover:text-red-700 dark:text-neutral-600 dark:bg-neutral-800/30 dark:hover:bg-red-900 dark:hover:text-red-300],
+    shadow_field: %w[rounded-lg text-neutral-500],
+    signature_value: %w[rounded-lg border-neutral-500 bg-neutral-50 dark:bg-neutral-900],
     # buttons
     button: "px-4 py-1 block w-full md:w-auto font-medium backdrop-blur-lg hover:animate-pulse border rounded-md text-neutral-500 bg-neutral-100/80 border-neutral-500 hover:text-neutral-900 hover:bg-neutral-400 hover:border-neutral-700 dark:text-neutral-500 dark:bg-neutral-900/80 dark:border-neutral-500 dark:hover:text-neutral-300 dark:hover:bg-neutral-600 dark:hover:border-neutral-300",
     primary_button: "px-4 py-1 block w-full md:w-auto font-medium backdrop-blur-lg hover:animate-pulse border rounded-md text-neutral-100 bg-neutral-700/80 border-neutral-900 hover:text-neutral-400 hover:bg-neutral-900 hover:border-neutral-300 dark:text-neutral-400 dark:bg-neutral-500/80 dark:border-neutral-400 dark:hover:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:border-neutral-300",

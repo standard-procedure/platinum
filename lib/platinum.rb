@@ -2,6 +2,7 @@
 
 module Platinum
   extend Phlex::Kit
+
   require_relative "platinum/version"
   require_relative "platinum/theme"
   require_relative "platinum/base"
