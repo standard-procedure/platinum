@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Platinum::Icon < Platinum::Base
-  def initialize icon, text: nil, wrap: false, **aptions
+  def initialize icon, text: nil, wrap: false, **options
     @text = text
     @class = [options.delete(:class), lookup(icon)].compact
     @options = options
