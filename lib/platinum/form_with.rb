@@ -6,15 +6,19 @@ class Platinum::FormWith < Platinum::Base
   def initialize title = nil, **form_params
     @title = title
     @form_params = form_params
+    @model = @form_params[:model]
   end
 
   def view_template(&contents)
-    card.title { @title.to_s } unless @title.nil?
-
     form_with(**@form_params) do |form|
       Column gap: 1, class: "p-1" do
         contents.call(form)
+        draw_alert if model_has_errors?
       end
     end
   end
+
+  private def model_has_errors? = @model.present? && @model.errors.any?
+
+  private def draw_alert = Alert(:warning, title: @model.errors.full_messages.to_sentence)
 end
