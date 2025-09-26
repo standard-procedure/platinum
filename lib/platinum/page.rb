@@ -87,9 +87,9 @@ class Platinum::Page < Platinum::Slotted
     meta name: "view-transition", content: "same-origin"
     meta name: "turbo-refresh-method", content: "morph"
     meta name: "turbo-refresh-scroll", content: "preserve"
-    @html_head.nil? ? default_head : @html_head.call
     stylesheet_link_tag :app, "data-turbo-track": "reload"
     javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    @html_head.nil? ? default_head : @html_head.call
   end
 
   private def render_sidebar
