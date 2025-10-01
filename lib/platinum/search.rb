@@ -7,7 +7,7 @@ class Platinum::Search < Platinum::Base
     @name = name
     @value = value
     data = (attributes.delete(:data) || {}).merge(controller: "search-form", turbo_frame: "_top")
-    @attributes = mix(action: url, method: method, data: data, **attributes)
+    @attributes = mix(id: attributes.delete(:id) || "search-form", action: url, method: method, data: data, **attributes)
   end
 
   def view_template(&)
