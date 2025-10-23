@@ -5,7 +5,8 @@ class Platinum::Icon < Platinum::Base
     @text = text
     @class = [options.delete(:class), lookup(icon)].compact
     @options = options
-    @wrap = wrap ? "text-wrap" : "text-nowrap"
+    @wrap = wrap 
+    @text_wrap = @wrap ? "text-wrap" : "text-nowrap"
   end
 
   def view_template
@@ -15,9 +16,9 @@ class Platinum::Icon < Platinum::Base
   private def icon = i(**mix(class: @class, **@options))
 
   private def icon_with_text
-    Row(gap: 1, justify: "start", **@options) do
+    Row(gap: 1, justify: "start", wrap: @wrap, **@options) do
       i(class: @class)
-      span(class: "group-open:hidden #{@wrap}") { @text }
+      span(class: "group-open:hidden #{@text_wrap}") { @text }
     end
   end
 
