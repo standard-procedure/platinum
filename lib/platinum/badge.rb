@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Platinum::Badge < Platinum::Base
-  def initialize **attributes
-    @class = [attributes.delete(:class) || theme.badge, theme.badge_frame]
+  def initialize style: nil, **attributes
+    @class = [attributes.delete(:class) || theme.send(style || :badge), theme.badge_frame]
   end
 
   def view_template(&) = span(class: @class, &)

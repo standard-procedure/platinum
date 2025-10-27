@@ -67,6 +67,11 @@ class Platinum::Theme
     card_inner: %w[p-1 md:p-2 block md:flex md:justify-between md:gap-4 rounded-md border border-white bg-white hover:border-neutral-200 dark:border-black dark:bg-black dark:hover:border-neutral-700],
     badge_frame: %w[inline rounded-full px-3 py-1 border text-sm whitespace-nowrap],
     badge: %w[bg-neutral-50 text-neutral-800 hover:bg-neutral-200 hover:text-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-600 dark:hover:text-neutral-300],
+    info_badge: %w[bg-sky-50 text-neutral-800 hover:bg-sky-200 hover:text-neutral-700 dark:bg-sky-900 dark:text-neutral-200 dark:hover:bg-sky-600 dark:hover:text-neutral-300],
+    primary_badge: %w[bg-sky-800 text-neutral-100 hover:bg-sky-900 hover:text-sky-200 dark:bg-neutral-900 dark:text-sky-200 dark:hover:bg-sky-600 dark:hover:text-sky-300],
+    success_badge: %w[bg-green-200 text-green-800 hover:bg-green-400 hover:text-green-900 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-600 dark:hover:text-green-300],
+    warning_badge: %w[bg-orange-200 text-orange-800 hover:bg-orange-400 hover:text-orange-900 dark:bg-orange-900 dark:text-orange-200 dark:hover:bg-orange-600 dark:hover:text-orange-300],
+    danger_badge: %w[bg-red-200 text-red-800 hover:bg-red-400 hover:text-red-900 dark:bg-red-900 dark:text-red-200 dark:hover:bg-red-600 dark:hover:text-red-300],
     list: %w[text-sm bg-neutral-100 *:even:bg-neutral-50 dark:bg-neutral-900 *:even:dark:bg-neutral-800],
     list_item: %w[p-1 rounded-md border-b border-neutral-200 dark:border-neutral-800],
     # accents
