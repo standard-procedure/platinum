@@ -15,7 +15,7 @@ class Platinum::Search < Platinum::Base
       form(**@attributes) do
         Platinum::Row(wrap: true, gap: 1, justify: "end", items: "start", class: "text-sm") do
           div class: "relative" do
-            input type: "text", name: @name, value: @value, placeholder: @placeholder, class: theme.input, data: {search_form_target: "input"}, autofocus: true
+            input type: "text", name: @name, value: @value, placeholder: @placeholder, class: theme.input, data: {search_form_target: "input"}
             span class: "absolute inset-y-0 right-2 top-0 grid w-8 place-content-center" do
               a(href: "#", data: {action: "search-form#submit"}, class: theme.inset_button) { Icon(theme.search_icon) }
             end
