@@ -118,11 +118,11 @@ class Platinum::Page < Platinum::Slotted
 
   private def render_mobile_footer
     nav class: theme.mobile_nav do
-      Platinum::Row(justify: "start", wrap: false, class: "flex-1") do
+      Platinum::Row(justify: "start", direction: :scrolling_row, class: "flex-1") do
         render_pagination
         render_mobile_search_button
       end
-      Platinum::Row(justify: "end", wrap: false, class: "shrink-0") do
+      Platinum::Row(justify: "end", direction: :scrolling_row, class: "shrink-0") do
         render_mobile_filters_button
         render_mobile_toolbars_button
       end
