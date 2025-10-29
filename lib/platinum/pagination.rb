@@ -10,7 +10,7 @@ class Platinum::Pagination < Platinum::Slotted
   def render? = @collection.total_pages > 1
 
   def view_template
-    Platinum::Row(class: theme.pagination_inner, gap: 4, items: "center") do
+    Platinum::Row(class: theme.pagination_inner, justify: "start", gap: 2, wrap: false, items: "center") do
       render Link.new(link_for(1), label: :first)
       render Link.new(link_for(@collection.prev_page), label: :previous)
       span(class: theme.pagination_text) { "#{@collection.current_page}/#{@collection.total_pages}" }
