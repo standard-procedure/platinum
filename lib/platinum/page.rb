@@ -106,29 +106,25 @@ class Platinum::Page < Platinum::Slotted
 
   private def render_mobile_header
     nav class: theme.mobile_nav do
-      Platinum::Row(gap: 2, class: "w-full") do
-        a(href: @home_url, class: theme.link) { Icon(theme.home_icon) }
-        h1(class: %w[flex-1 text-center]) { render_title_bar }
-        Platinum::DrawerButton(position: "right") do |drawer|
-          drawer.icon { Icon(theme.navigation_icon) }
-          div(data: {platinum_layout_target: "mobileBreadcrumbs"})
-          div(data: {platinum_layout_target: "mobileSidebar"})
-        end
+      a(href: @home_url, class: theme.link) { Icon(theme.home_icon) }
+      h1(class: %w[flex-1 text-center]) { render_title_bar }
+      Platinum::DrawerButton(position: "right") do |drawer|
+        drawer.icon { Icon(theme.navigation_icon) }
+        div(data: {platinum_layout_target: "mobileBreadcrumbs"})
+        div(data: {platinum_layout_target: "mobileSidebar"})
       end
     end
   end
 
   private def render_mobile_footer
     nav class: theme.mobile_nav do
-      Platinum::Row(gap: 2, class: "w-full") do
-        Platinum::Row(justify: "start", class: "flex-1") do
-          render_pagination
-          render_mobile_search_button
-        end
-        Platinum::Row(justify: "end", class: "shrink-0") do
-          render_mobile_filters_button
-          render_mobile_toolbars_button
-        end
+      Platinum::Row(justify: "start", class: "flex-1") do
+        render_pagination
+        render_mobile_search_button
+      end
+      Platinum::Row(justify: "end", class: "shrink-0") do
+        render_mobile_filters_button
+        render_mobile_toolbars_button
       end
     end
   end
