@@ -5,5 +5,5 @@ class Platinum::Badge < Platinum::Base
     @class = [attributes.delete(:class) || theme.send(style || :badge), theme.badge_frame]
   end
 
-  def view_template(&) = span(class: @class, &)
+  def view_template(&) = span(class: @class, **@attributes, &)
 end
