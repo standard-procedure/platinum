@@ -11,7 +11,7 @@ class Platinum::FormWith < Platinum::Base
 
   def view_template(&contents)
     form_with(**@form_params) do |form|
-      Column gap: 1, class: "p-1" do
+      Column gap: 1, class: %w[p-1 w-fit] do
         contents.call(form)
         draw_alert if model_has_errors?
       end
