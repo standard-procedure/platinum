@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Platinum::Submit < Platinum::Slotted
-  def initialize text = nil, cancel: true, cancel_url: nil, cancel_text: nil, style: "primary_button"
+  def initialize text = nil, cancel: true, cancel_url: nil, cancel_text: nil, style: "primary_button", **attributes
     @label = text
     @cancel = cancel
     @cancel_url = cancel_url
