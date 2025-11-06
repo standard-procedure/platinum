@@ -90,6 +90,7 @@ class Platinum::Theme
     h: {1 => "text-2xl font-bold", 2 => "text-xl font-medium border-b border-neutral-600 dark:border-neutral-300", 3 => "text-xl font-bold", 4 => "text-lg font-bold", 5 => "text-base font-bold", 6 => "text-sm font-bold"},
     muted: "text-neutral-500 dark:text-neutral-500",
     # forms
+    form: %w[w-full max-w-sm md:max-w-md lg:max-w-lg p-1],
     label: %w[w-full px-3 py-2 rounded-none bg-white text-neutral-600 dark:bg-black dark:text-neutral-400],
     required_label: "w-full px-3 py-2 rounded-none border-e border-green-600 bg-green-50 text-neutral-600 dark:border-green-400 dark:bg-green-900 dark:text-neutral-400",
     inline_label: %w[rounded-none basis-xs font-bold bg-white text-neutral-600 dark:bg-black dark:text-neutral-400],
