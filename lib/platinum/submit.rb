@@ -7,6 +7,7 @@ class Platinum::Submit < Platinum::Slotted
     @cancel_url = cancel_url
     @cancel_text = cancel_text
     @style = style
+    @attributes = attributes
   end
 
   def label(&contents)
@@ -20,7 +21,7 @@ class Platinum::Submit < Platinum::Slotted
         extras&.call
       end
       Row justify: "end", class: "shrink-0" do
-        Button(@style, type: "submit") { button_label }
+        Button(@style, type: "submit", **attributes) { button_label }
       end
     end
   end
