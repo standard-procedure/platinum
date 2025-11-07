@@ -21,7 +21,7 @@ class Platinum::Submit < Platinum::Slotted
         extras&.call
       end
       Row justify: "end", class: "shrink-0" do
-        Button(@style, type: "submit", **attributes) { button_label }
+        Button(@style, type: "submit", **@attributes) { button_label }
       end
     end
   end
