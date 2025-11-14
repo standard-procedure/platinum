@@ -27,6 +27,7 @@ class Platinum::Theme
     search_icon: "search",
     clear_icon: "x-circle",
     filter_icon: "filter",
+    add_icon: "plus-square",
     toolbar_icon: "gear",
     edit_icon: "pencil-square",
     delete_icon: "x-square-fill",
