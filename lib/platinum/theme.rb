@@ -29,13 +29,15 @@ class Platinum::Theme
     filter_icon: "filter",
     toolbar_icon: "gear",
     edit_icon: "pencil-square",
-    delete_icon: "x-square-fill",    
+    delete_icon: "x-square-fill",
     cancel_icon: "arrow-left-circle",
     first_icon: "caret-left-square",
     previous_icon: "caret-left",
     next_icon: "caret-right",
     last_icon: "caret-right-square",
     copy_icon: "copy",
+    # General classes that need to loaded
+    general: %w[relative flow-root hidden block shrink-0 flex-1 text-wrap text-nowrap max-w-100 overflow-x-hidden overflow-x-auto overflow-y-hidden overflow-y-auto],
     # layout
     body: %w[py-safe max-w-svw flex flex-row justify-between items-stretch font-sans font-normal text-base] +
       %w[bg-sky-050 text-neutral-700 dark:bg-black dark:text-neutral-300],
@@ -68,6 +70,8 @@ class Platinum::Theme
     pagination_container: %w[backdrop-blur-lg],
     search_container: %w[backdrop-blur-lg] +
       %w[bg-white/10 hover:bg-white dark:bg-black/10 dark:hover:bg-black],
+    search_submit_button_container: %w[absolute inset-y-0 right-2 top-0 grid w-8 place-content-center],
+    search_clear_button_container: %w[absolute inset-y-0 right-10 top-0 grid w-8 place-content-center],
     # containers
     row: %w[flex flex-row items-center justify-start flex-nowrap],
     wrapped_row: %w[flex flex-row items-center justify-start flex-wrap],
@@ -117,13 +121,12 @@ class Platinum::Theme
     inset_button: %w[rounded-md px-2 py-1 backdrop-blur-xs text-neutral-400 bg-neutral-200/30 hover:bg-sky-100 hover:text-sky-700 dark:text-neutral-600 dark:bg-neutral-800/30 dark:hover:bg-sky-900 dark:hover:text-sky-300],
     inset_danger_button: %w[rounded-md px-2 py-1 backdrop-blur-xs text-neutral-400 bg-neutral-200/30 hover:bg-red-100 hover:text-red-700 dark:text-neutral-600 dark:bg-neutral-800/30 dark:hover:bg-red-900 dark:hover:text-red-300],
     password_field_container: %w[relative w-full],
-    password_field_button_container: %w[absolute inset-y-0 right-4 top-2 grid w-8 place-content-center bg-none rounded-md],
+    password_field_button_container: %w[absolute inset-y-0 right-1 top-0 grid w-8 place-content-center bg-none rounded-md],
     copy_text_field_container: %w[flex flex-row justify-start gap-1 items-center w-full],
     copy_text_field_button_container: %w[grid w-8 place-content-center bg-none rounded-md],
     copy_text_field_button: %w[rounded-md px-2 py-1 text-neutral-400 bg-neutral-200/30 backdrop-blur-xs hover:bg-green-100 hover:text-green-700],
     signature_value: %w[rounded-lg border-neutral-500 bg-neutral-50 dark:bg-neutral-900],
     shadow_field: %w[rounded-lg text-neutral-100 dark:text-neutral-900],
-    signature_value: %w[rounded-lg border-neutral-500 bg-neutral-50 dark:bg-neutral-900],
     # buttons
     button: %w[pointer-events-auto px-4 py-1 block w-full md:w-auto font-medium backdrop-blur-lg hover:animate-pulse border rounded-md] +
       %w[text-neutral-500 bg-neutral-100/30 border-neutral-500/30 hover:text-neutral-900 hover:bg-sky-400 hover:border-sky-700] +
