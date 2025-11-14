@@ -19,7 +19,7 @@ class Platinum::Search < Platinum::Base
             span class: theme.search_submit_button_container do
               a(href: "#", data: {action: "search-form#submit"}, class: theme.inset_button) { Icon(theme.search_icon) }
             end
-            span class: theme.search_cancel_button_container do
+            span class: theme.search_clear_button_container do
               a(href: "#", data: {action: "search-form#clearAndSubmit"}, class: theme.inset_danger_button) { Icon(theme.clear_icon) }
             end
           end
