@@ -83,7 +83,7 @@ class Platinum::Theme
     card_outer: %w[block max-w-svw m-1 rounded-md border overflow-hidden] +
       %w[border-sky-800] +
       %w[dark:border-neutral-950],
-    card_inner: %w[p-1 md:p-2 block md:flex md:justify-between md:gap-4 rounded-md border] +
+    card_inner: %w[p-1 md:p-2 flex flex-col gap-2 md:flex md:justify-between md:gap-4 rounded-md border] +
       %w[border-white bg-white hover:border-sky-200] +
       %w[dark:border-black dark:bg-black dark:hover:border-sky-700],
     badge_frame: %w[inline rounded-full px-3 py-1 border text-sm whitespace-nowrap],
