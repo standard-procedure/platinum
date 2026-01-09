@@ -61,9 +61,7 @@ class Platinum::Page < Platinum::Slotted
         render_sidebar
         main(class: theme.main) do
           Flash()
-          Platinum::Column(gap: 2, class: "flex-1") do
-            yield
-          end
+          yield
         end
         header class: theme.header do
           render_mobile_header
