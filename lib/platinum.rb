@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "literal"
+
 module Platinum
   extend Phlex::Kit
 

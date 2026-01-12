@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "phlex-rails", "~> 2.3.0"
+  spec.add_dependency "literal"
 end

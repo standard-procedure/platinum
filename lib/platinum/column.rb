@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-class Platinum::Column < Platinum::Flex
-  def initialize gap: 2, justify: :start, items: :stretch, wrap: false, **attributes
-    direction = wrap ? :wrapped_column : :column
-    super(direction: direction, gap: gap, justify: justify, items: items, **attributes)
+class Platinum::Column < Platinum::Base
+  prop :gap, Integer, default: 1
+  prop :justify, Enum("between", "start", "end", "evenly", "around", "center", "stretch"), default: "between"
+  prop :items, Enum("start", "end", "baseline", "center", "stretch"), default: "center"
+  prop :attributes, Hash, :**, default: {}.freeze
+
+  def view_template(&)
+    div(**mix(class: ["flex", "flex-col", "gap-#{@gap}", "justify-#{@justify}", "items-#{@align}"], **@attributes), &)
   end
 end
