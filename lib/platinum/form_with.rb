@@ -3,8 +3,7 @@
 class Platinum::FormWith < Platinum::Base
   include Phlex::Rails::Helpers::FormWith
 
-  def initialize title = nil, **form_params
-    @title = title
+  def initialize **form_params
     @form_params = form_params
     @model = @form_params[:model]
   end
