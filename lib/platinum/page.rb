@@ -129,35 +129,36 @@ class Platinum::Page < Platinum::Slotted
 
   private def render_desktop_header
     nav class: theme.desktop_nav do
-      Platinum::Row(gap: 2, class: "w-full") do
-        Platinum::Row(justify: "start", class: "flex-1") do
-          a(href: @home_url, class: theme.link) { Icon(theme.home_icon) }
-          Platinum::Row(justify: "start", wrap: false, data: {platinum_layout_target: "breadcrumbs"}) { render_breadcrumbs }
-          h1(class: %w[shrink-0]) { render_title_bar }
+      div class: %w[flex flex-row gap-2 justify-between items-start] do
+        div class: %w[flex flex-row justify-start items-start flex-1] do
+          a(href: @home_url, class: %w[shrink-0] + theme.link) do
+            Icon(theme.home_icon)
+          end
+          span(class: %w[shrink-0], data: {platinum_layout_target: "breadcrumbs"}) { render_breadcrumbs }
+          span(class: %w[flex-1]) { render_title_bar }
         end
-        Platinum::Row(justify: "end", class: "shrink-0", data: {platinum_layout_target: "search"}) { render_search }
+        div class: %w[shrink-0], data: {platinum_layout_target: "search"} do
+          render_search
+        end
       end
     end
   end
 
   private def render_desktop_footer
-    nav class: theme.desktop_nav do
-      Platinum::Row class: "w-full" do
-        Platinum::Row(justify: "start", class: "shrink-0") { render_pagination }
-        Platinum::Row justify: "end", class: "flex-1" do
-          Platinum::Row(justify: "start", wrap: false, data: {platinum_layout_target: "filters"}) { render_filters }
-          Platinum::Row(justify: "end", data: {platinum_layout_target: "toolbars"}) { render_toolbars }
-        end
+    nav class: %w[flex flex-row gap-2 justify-between items-end] do
+      render_pagination
+      div class: %w[flex flex-row justify-end items-end grow-1] do
+        span(data: {platinum_layout_target: "filters"}) { render_filters }
+        span(data: {platinum_layout_target: "toolbars"}) { render_toolbars }
       end
     end
   end
 
   private def render_breadcrumbs
-    Platinum::Row(justify: "start", gap: 1) do
+    div class: %w[flex flex-row justify-start items-start gap-1 flex-wrap] do
       @breadcrumbs.each do |breadcrumb|
         span { Platinum::Breadcrumb(&breadcrumb) }
       end
-      span(class: "inline md:hidden") { @page_title.to_s }
     end
   end
 
@@ -202,9 +203,7 @@ class Platinum::Page < Platinum::Slotted
   end
 
   private def render_title_bar
-    Row(justify: "start") do
-      @title_bar.nil? ? @page_title.to_s : @title_bar.call
-    end
+    @title_bar.nil? ? @page_title.to_s : @title_bar.call
   end
 
   private def default_head

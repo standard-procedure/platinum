@@ -7,8 +7,10 @@ module Platinum
 
   require_relative "platinum/version"
   require_relative "platinum/theme"
+  require_relative "platinum/types"
   require_relative "platinum/base"
   require_relative "platinum/slotted"
+  require_relative "platinum/inset"
   require_relative "platinum/icon"
   require_relative "platinum/flex"
   require_relative "platinum/row"
