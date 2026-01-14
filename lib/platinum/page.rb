@@ -128,24 +128,22 @@ class Platinum::Page < Platinum::Slotted
   end
 
   private def render_desktop_header
-    nav class: theme.desktop_nav do
-      div class: %w[flex flex-row gap-2 justify-between items-start] do
-        div class: %w[flex flex-row justify-start items-start flex-1] do
-          a(href: @home_url, class: %w[shrink-0] + theme.link) do
-            Icon(theme.home_icon)
-          end
-          span(class: %w[shrink-0], data: {platinum_layout_target: "breadcrumbs"}) { render_breadcrumbs }
-          span(class: %w[flex-1]) { render_title_bar }
+    nav class: %w[hidden md:flex flex-row items-center justify-between px-4 py-1 h-12 gap-2] do
+      div class: %w[flex flex-row justify-start items-start flex-1] do
+        a(href: @home_url, class: %w[shrink-0] + theme.link) do
+          Icon(theme.home_icon)
         end
-        div class: %w[shrink-0], data: {platinum_layout_target: "search"} do
-          render_search
-        end
+        span(class: %w[shrink-0], data: {platinum_layout_target: "breadcrumbs"}) { render_breadcrumbs }
+        span(class: %w[flex-1]) { render_title_bar }
+      end
+      div class: %w[shrink-0], data: {platinum_layout_target: "search"} do
+        render_search
       end
     end
   end
 
   private def render_desktop_footer
-    nav class: %w[flex flex-row gap-2 justify-between items-end] do
+    nav class: %w[hidden md:flex flex-row items-center justify-between px-4 py-1 h-12 gap-2] do
       render_pagination
       div class: %w[flex flex-row justify-end items-end grow-1] do
         span(data: {platinum_layout_target: "filters"}) { render_filters }

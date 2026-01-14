@@ -51,7 +51,7 @@ class Platinum::Theme
     footer: %w[fixed pb-safe inset-x-safe bottom-safe px-4 md:pb-1 md:px-1 z-20 md:backdrop-blur-sm md:border-t] +
       %w[border-white bg-transparent text-neutral-800 hover:border-neutral-100 hover:bg-white/20 hover:text-neutral-900 dark:border-black dark:bg-transparent dark:text-neutral-200 dark:hover:border-neutral-900 dark:hover:bg-black/20 dark:hover:text-neutral-400],
     mobile_nav: %w[flex flex-no-wrap overflow-x-auto overflow-y-hidden md:hidden items-center justify-between px-1 py-2 h-12 gap-1],
-    desktop_nav: %w[hidden md:flex flex-row items-center justify-start px-4 h-12 gap-2],
+    desktop_nav: %w[hidden md:flex flex-row items-center justify-between px-4 py-1 h-12 gap-2],
     toolbar_container: %w[flex flex-col overflow-hidden md:flex-row flex-nowrap text-nowrap gap-2 items-stretch justify-start md:items-center md:justify-start rounded-md backdrop-blur-lg border] +
       %w[border-white bg-sky-200/30 hover:bg-sky-200 text-sky-800] +
       %w[dark:border-black dark:bg-sky-800/30 dark:text-sky-200],
