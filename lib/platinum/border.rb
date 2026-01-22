@@ -2,10 +2,10 @@
 
 class Platinum::Border < Platinum::Base
   prop :padding, Integer, default: 1
-  prop :radius, Size, default: "sm"
-  prop :colour, Colour, default: "neutral"
-  prop :background, _Map(light: Shade, dark: Shade), default: {light: 50, dark: 800}.freeze
-  prop :border, _Map(light: Shade, dark: Shade), default: {light: 100, dark: 900}.freeze
+  prop :radius, Types.Size, default: "sm"
+  prop :colour, Types.Colour, default: "neutral"
+  prop :background, _Map(light: Types.Shade, dark: Types.Shade), default: {light: 50, dark: 800}.freeze
+  prop :border, _Map(light: Types.Shade, dark: Types.Shade), default: {light: 100, dark: 900}.freeze
   prop :attributes, Hash, :**, default: {}.freeze
 
   def view_template(&)
