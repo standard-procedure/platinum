@@ -15,7 +15,7 @@ module Platinum
   require_relative "platinum/flex"
   require_relative "platinum/row"
   require_relative "platinum/column"
-  require_relative "platinum/column_or_row"
+  require_relative "platinum/switcher"
   require_relative "platinum/breadcrumb"
   require_relative "platinum/h"
   require_relative "platinum/expander"
